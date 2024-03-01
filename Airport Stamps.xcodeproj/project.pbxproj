@@ -1,0 +1,885 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A00FEEB32B8F7D3100DFC61D /* Airport_StampsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEB22B8F7D3100DFC61D /* Airport_StampsApp.swift */; };
+		A00FEEB52B8F7D3100DFC61D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEB42B8F7D3100DFC61D /* ContentView.swift */; };
+		A00FEEB72B8F7D3200DFC61D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00FEEB62B8F7D3200DFC61D /* Assets.xcassets */; };
+		A00FEEBA2B8F7D3200DFC61D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00FEEB92B8F7D3200DFC61D /* Preview Assets.xcassets */; };
+		A00FEEC42B8F7D3200DFC61D /* Airport_StampsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEC32B8F7D3200DFC61D /* Airport_StampsTests.swift */; };
+		A00FEECE2B8F7D3200DFC61D /* Airport_StampsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEECD2B8F7D3200DFC61D /* Airport_StampsUITests.swift */; };
+		A00FEED02B8F7D3200DFC61D /* Airport_StampsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEECF2B8F7D3200DFC61D /* Airport_StampsUITestsLaunchTests.swift */; };
+		A00FEEE02B8F7DD100DFC61D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEDF2B8F7DD100DFC61D /* MapView.swift */; };
+		A00FEEE22B8F7E2400DFC61D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEE12B8F7E2400DFC61D /* Constants.swift */; };
+		A00FEEE42B8F7F2300DFC61D /* StampsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEE32B8F7F2300DFC61D /* StampsView.swift */; };
+		A00FEEE62B8F7F3200DFC61D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEE52B8F7F3200DFC61D /* ProfileView.swift */; };
+		A00FEEE82B8F835900DFC61D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEE72B8F835900DFC61D /* MapViewModel.swift */; };
+		A00FEEEB2B8F842D00DFC61D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEEA2B8F842D00DFC61D /* LocationManager.swift */; };
+		A00FEEED2B8F898100DFC61D /* StampLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEEC2B8F898100DFC61D /* StampLocation.swift */; };
+		A00FEEEF2B8F8B6C00DFC61D /* MapSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEEE2B8F8B6C00DFC61D /* MapSearchView.swift */; };
+		A00FEEF22B8FA0BC00DFC61D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A00FEEF12B8FA0BC00DFC61D /* FirebaseAnalytics */; };
+		A00FEEF42B8FA0BC00DFC61D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A00FEEF32B8FA0BC00DFC61D /* FirebaseAnalyticsSwift */; };
+		A00FEEF62B8FA0BC00DFC61D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A00FEEF52B8FA0BC00DFC61D /* FirebaseAuth */; };
+		A00FEEF82B8FA0BC00DFC61D /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A00FEEF72B8FA0BC00DFC61D /* FirebaseDatabase */; };
+		A00FEEFA2B8FA0BC00DFC61D /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A00FEEF92B8FA0BC00DFC61D /* FirebaseDatabaseSwift */; };
+		A00FEEFC2B8FA0BC00DFC61D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A00FEEFB2B8FA0BC00DFC61D /* FirebaseFirestore */; };
+		A00FEEFE2B8FA0BC00DFC61D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A00FEEFD2B8FA0BC00DFC61D /* FirebaseFirestoreSwift */; };
+		A00FEF002B8FA0BC00DFC61D /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = A00FEEFF2B8FA0BC00DFC61D /* FirebaseFunctions */; };
+		A00FEF022B8FA0BC00DFC61D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A00FEF012B8FA0BC00DFC61D /* FirebaseMessaging */; };
+		A00FEF062B8FA71E00DFC61D /* MapPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEF052B8FA71E00DFC61D /* MapPanelView.swift */; };
+		A00FEF082B8FA7AC00DFC61D /* MapButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEF072B8FA7AC00DFC61D /* MapButtonView.swift */; };
+		A00FEF0A2B8FBAB300DFC61D /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEF092B8FBAB300DFC61D /* FirebaseService.swift */; };
+		A00FEF0F2B8FBF9800DFC61D /* AnnotationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEF0E2B8FBF9800DFC61D /* AnnotationItem.swift */; };
+		A01A9CDF2B90C41B00B325F7 /* StampsAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CDE2B90C41B00B325F7 /* StampsAppViewModel.swift */; };
+		A01A9CE12B90C43500B325F7 /* StampsAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CE02B90C43500B325F7 /* StampsAppView.swift */; };
+		A01A9CE32B90C45100B325F7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CE22B90C45100B325F7 /* LoginView.swift */; };
+		A01A9CE72B913CF200B325F7 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CE62B913CF200B325F7 /* AuthManager.swift */; };
+		A01A9CEA2B913DE200B325F7 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A01A9CE92B913DE200B325F7 /* GoogleSignIn */; };
+		A01A9CEC2B913DE200B325F7 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A01A9CEB2B913DE200B325F7 /* GoogleSignInSwift */; };
+		A01A9CEE2B913E0B00B325F7 /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CED2B913E0B00B325F7 /* GoogleSignInManager.swift */; };
+		A01A9CF02B913F0100B325F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A01A9CEF2B913F0100B325F7 /* GoogleService-Info.plist */; };
+		A01A9CF42B91416100B325F7 /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CF32B91416100B325F7 /* AppleSignInManager.swift */; };
+		A09A3CDA2B9181A1004FE834 /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CD92B9181A1004FE834 /* Stamp.swift */; };
+		A09A3CDE2B918406004FE834 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDD2B918406004FE834 /* User.swift */; };
+		A09A3CE02B9186A0004FE834 /* CollectedStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A00FEEC02B8F7D3200DFC61D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A00FEEA72B8F7D3100DFC61D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A00FEEAE2B8F7D3100DFC61D;
+			remoteInfo = "Airport Stamps";
+		};
+		A00FEECA2B8F7D3200DFC61D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A00FEEA72B8F7D3100DFC61D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A00FEEAE2B8F7D3100DFC61D;
+			remoteInfo = "Airport Stamps";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A00FEEAF2B8F7D3100DFC61D /* Airport Stamps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Airport Stamps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A00FEEB22B8F7D3100DFC61D /* Airport_StampsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport_StampsApp.swift; sourceTree = "<group>"; };
+		A00FEEB42B8F7D3100DFC61D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A00FEEB62B8F7D3200DFC61D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A00FEEB92B8F7D3200DFC61D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A00FEEBF2B8F7D3200DFC61D /* Airport StampsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Airport StampsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A00FEEC32B8F7D3200DFC61D /* Airport_StampsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport_StampsTests.swift; sourceTree = "<group>"; };
+		A00FEEC92B8F7D3200DFC61D /* Airport StampsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Airport StampsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A00FEECD2B8F7D3200DFC61D /* Airport_StampsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport_StampsUITests.swift; sourceTree = "<group>"; };
+		A00FEECF2B8F7D3200DFC61D /* Airport_StampsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport_StampsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A00FEEDF2B8F7DD100DFC61D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A00FEEE12B8F7E2400DFC61D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A00FEEE32B8F7F2300DFC61D /* StampsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsView.swift; sourceTree = "<group>"; };
+		A00FEEE52B8F7F3200DFC61D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A00FEEE72B8F835900DFC61D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		A00FEEEA2B8F842D00DFC61D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A00FEEEC2B8F898100DFC61D /* StampLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampLocation.swift; sourceTree = "<group>"; };
+		A00FEEEE2B8F8B6C00DFC61D /* MapSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchView.swift; sourceTree = "<group>"; };
+		A00FEF052B8FA71E00DFC61D /* MapPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPanelView.swift; sourceTree = "<group>"; };
+		A00FEF072B8FA7AC00DFC61D /* MapButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonView.swift; sourceTree = "<group>"; };
+		A00FEF092B8FBAB300DFC61D /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		A00FEF0E2B8FBF9800DFC61D /* AnnotationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationItem.swift; sourceTree = "<group>"; };
+		A01A9CDE2B90C41B00B325F7 /* StampsAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAppViewModel.swift; sourceTree = "<group>"; };
+		A01A9CE02B90C43500B325F7 /* StampsAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAppView.swift; sourceTree = "<group>"; };
+		A01A9CE22B90C45100B325F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A01A9CE62B913CF200B325F7 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		A01A9CED2B913E0B00B325F7 /* GoogleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInManager.swift; sourceTree = "<group>"; };
+		A01A9CEF2B913F0100B325F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A01A9CF12B913F4F00B325F7 /* Airport-Stamps-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Airport-Stamps-Info.plist"; sourceTree = SOURCE_ROOT; };
+		A01A9CF22B91412300B325F7 /* Airport Stamps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Airport Stamps.entitlements"; sourceTree = "<group>"; };
+		A01A9CF32B91416100B325F7 /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
+		A09A3CD92B9181A1004FE834 /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
+		A09A3CDD2B918406004FE834 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectedStamp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A00FEEAC2B8F7D3100DFC61D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00FEF022B8FA0BC00DFC61D /* FirebaseMessaging in Frameworks */,
+				A00FEEFA2B8FA0BC00DFC61D /* FirebaseDatabaseSwift in Frameworks */,
+				A00FEEF42B8FA0BC00DFC61D /* FirebaseAnalyticsSwift in Frameworks */,
+				A00FEEF62B8FA0BC00DFC61D /* FirebaseAuth in Frameworks */,
+				A00FEF002B8FA0BC00DFC61D /* FirebaseFunctions in Frameworks */,
+				A01A9CEA2B913DE200B325F7 /* GoogleSignIn in Frameworks */,
+				A00FEEFE2B8FA0BC00DFC61D /* FirebaseFirestoreSwift in Frameworks */,
+				A00FEEF82B8FA0BC00DFC61D /* FirebaseDatabase in Frameworks */,
+				A00FEEF22B8FA0BC00DFC61D /* FirebaseAnalytics in Frameworks */,
+				A00FEEFC2B8FA0BC00DFC61D /* FirebaseFirestore in Frameworks */,
+				A01A9CEC2B913DE200B325F7 /* GoogleSignInSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00FEEBC2B8F7D3200DFC61D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00FEEC62B8F7D3200DFC61D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A00FEEA62B8F7D3100DFC61D = {
+			isa = PBXGroup;
+			children = (
+				A00FEEB12B8F7D3100DFC61D /* Airport Stamps */,
+				A00FEEC22B8F7D3200DFC61D /* Airport StampsTests */,
+				A00FEECC2B8F7D3200DFC61D /* Airport StampsUITests */,
+				A00FEEB02B8F7D3100DFC61D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A00FEEB02B8F7D3100DFC61D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEAF2B8F7D3100DFC61D /* Airport Stamps.app */,
+				A00FEEBF2B8F7D3200DFC61D /* Airport StampsTests.xctest */,
+				A00FEEC92B8F7D3200DFC61D /* Airport StampsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A00FEEB12B8F7D3100DFC61D /* Airport Stamps */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEB22B8F7D3100DFC61D /* Airport_StampsApp.swift */,
+				A00FEEB42B8F7D3100DFC61D /* ContentView.swift */,
+				A01A9CE02B90C43500B325F7 /* StampsAppView.swift */,
+				A01A9CE42B90C46100B325F7 /* Login */,
+				A01A9CE52B90C5B300B325F7 /* Model */,
+				A01A9CDE2B90C41B00B325F7 /* StampsAppViewModel.swift */,
+				A09A3CDB2B9183D2004FE834 /* Activities */,
+				A00FEEE92B8F841B00DFC61D /* Services */,
+				A00FEEB62B8F7D3200DFC61D /* Assets.xcassets */,
+				A01A9CEF2B913F0100B325F7 /* GoogleService-Info.plist */,
+				A01A9CF22B91412300B325F7 /* Airport Stamps.entitlements */,
+				A01A9CF12B913F4F00B325F7 /* Airport-Stamps-Info.plist */,
+				A00FEEB82B8F7D3200DFC61D /* Preview Content */,
+			);
+			path = "Airport Stamps";
+			sourceTree = "<group>";
+		};
+		A00FEEB82B8F7D3200DFC61D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEB92B8F7D3200DFC61D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A00FEEC22B8F7D3200DFC61D /* Airport StampsTests */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEC32B8F7D3200DFC61D /* Airport_StampsTests.swift */,
+			);
+			path = "Airport StampsTests";
+			sourceTree = "<group>";
+		};
+		A00FEECC2B8F7D3200DFC61D /* Airport StampsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEECD2B8F7D3200DFC61D /* Airport_StampsUITests.swift */,
+				A00FEECF2B8F7D3200DFC61D /* Airport_StampsUITestsLaunchTests.swift */,
+			);
+			path = "Airport StampsUITests";
+			sourceTree = "<group>";
+		};
+		A00FEEDC2B8F7D8F00DFC61D /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEF0B2B8FBF3300DFC61D /* View */,
+				A00FEF0C2B8FBF4C00DFC61D /* Model */,
+				A00FEEE72B8F835900DFC61D /* MapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		A00FEEDD2B8F7D9700DFC61D /* Stamps */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEE32B8F7F2300DFC61D /* StampsView.swift */,
+			);
+			path = Stamps;
+			sourceTree = "<group>";
+		};
+		A00FEEDE2B8F7DAD00DFC61D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEE52B8F7F3200DFC61D /* ProfileView.swift */,
+				A09A3CDD2B918406004FE834 /* User.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		A00FEEE92B8F841B00DFC61D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A01A9CE62B913CF200B325F7 /* AuthManager.swift */,
+				A01A9CED2B913E0B00B325F7 /* GoogleSignInManager.swift */,
+				A01A9CF32B91416100B325F7 /* AppleSignInManager.swift */,
+				A00FEEEA2B8F842D00DFC61D /* LocationManager.swift */,
+				A00FEF092B8FBAB300DFC61D /* FirebaseService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A00FEF0B2B8FBF3300DFC61D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEDF2B8F7DD100DFC61D /* MapView.swift */,
+				A00FEF052B8FA71E00DFC61D /* MapPanelView.swift */,
+				A00FEF072B8FA7AC00DFC61D /* MapButtonView.swift */,
+				A00FEEEE2B8F8B6C00DFC61D /* MapSearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A00FEF0C2B8FBF4C00DFC61D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEEC2B8F898100DFC61D /* StampLocation.swift */,
+				A00FEF0E2B8FBF9800DFC61D /* AnnotationItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A01A9CE42B90C46100B325F7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A01A9CE22B90C45100B325F7 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A01A9CE52B90C5B300B325F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEE12B8F7E2400DFC61D /* Constants.swift */,
+				A09A3CD92B9181A1004FE834 /* Stamp.swift */,
+				A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A09A3CDB2B9183D2004FE834 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				A00FEEDC2B8F7D8F00DFC61D /* Map */,
+				A00FEEDD2B8F7D9700DFC61D /* Stamps */,
+				A00FEEDE2B8F7DAD00DFC61D /* Profile */,
+			);
+			path = Activities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A00FEEAE2B8F7D3100DFC61D /* Airport Stamps */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00FEED32B8F7D3200DFC61D /* Build configuration list for PBXNativeTarget "Airport Stamps" */;
+			buildPhases = (
+				A00FEEAB2B8F7D3100DFC61D /* Sources */,
+				A00FEEAC2B8F7D3100DFC61D /* Frameworks */,
+				A00FEEAD2B8F7D3100DFC61D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Airport Stamps";
+			packageProductDependencies = (
+				A00FEEF12B8FA0BC00DFC61D /* FirebaseAnalytics */,
+				A00FEEF32B8FA0BC00DFC61D /* FirebaseAnalyticsSwift */,
+				A00FEEF52B8FA0BC00DFC61D /* FirebaseAuth */,
+				A00FEEF72B8FA0BC00DFC61D /* FirebaseDatabase */,
+				A00FEEF92B8FA0BC00DFC61D /* FirebaseDatabaseSwift */,
+				A00FEEFB2B8FA0BC00DFC61D /* FirebaseFirestore */,
+				A00FEEFD2B8FA0BC00DFC61D /* FirebaseFirestoreSwift */,
+				A00FEEFF2B8FA0BC00DFC61D /* FirebaseFunctions */,
+				A00FEF012B8FA0BC00DFC61D /* FirebaseMessaging */,
+				A01A9CE92B913DE200B325F7 /* GoogleSignIn */,
+				A01A9CEB2B913DE200B325F7 /* GoogleSignInSwift */,
+			);
+			productName = "Airport Stamps";
+			productReference = A00FEEAF2B8F7D3100DFC61D /* Airport Stamps.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A00FEEBE2B8F7D3200DFC61D /* Airport StampsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00FEED62B8F7D3200DFC61D /* Build configuration list for PBXNativeTarget "Airport StampsTests" */;
+			buildPhases = (
+				A00FEEBB2B8F7D3200DFC61D /* Sources */,
+				A00FEEBC2B8F7D3200DFC61D /* Frameworks */,
+				A00FEEBD2B8F7D3200DFC61D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A00FEEC12B8F7D3200DFC61D /* PBXTargetDependency */,
+			);
+			name = "Airport StampsTests";
+			productName = "Airport StampsTests";
+			productReference = A00FEEBF2B8F7D3200DFC61D /* Airport StampsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A00FEEC82B8F7D3200DFC61D /* Airport StampsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00FEED92B8F7D3200DFC61D /* Build configuration list for PBXNativeTarget "Airport StampsUITests" */;
+			buildPhases = (
+				A00FEEC52B8F7D3200DFC61D /* Sources */,
+				A00FEEC62B8F7D3200DFC61D /* Frameworks */,
+				A00FEEC72B8F7D3200DFC61D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A00FEECB2B8F7D3200DFC61D /* PBXTargetDependency */,
+			);
+			name = "Airport StampsUITests";
+			productName = "Airport StampsUITests";
+			productReference = A00FEEC92B8F7D3200DFC61D /* Airport StampsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A00FEEA72B8F7D3100DFC61D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					A00FEEAE2B8F7D3100DFC61D = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					A00FEEBE2B8F7D3200DFC61D = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = A00FEEAE2B8F7D3100DFC61D;
+					};
+					A00FEEC82B8F7D3200DFC61D = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = A00FEEAE2B8F7D3100DFC61D;
+					};
+				};
+			};
+			buildConfigurationList = A00FEEAA2B8F7D3100DFC61D /* Build configuration list for PBXProject "Airport Stamps" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A00FEEA62B8F7D3100DFC61D;
+			packageReferences = (
+				A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A01A9CE82B913DE200B325F7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
+			productRefGroup = A00FEEB02B8F7D3100DFC61D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A00FEEAE2B8F7D3100DFC61D /* Airport Stamps */,
+				A00FEEBE2B8F7D3200DFC61D /* Airport StampsTests */,
+				A00FEEC82B8F7D3200DFC61D /* Airport StampsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A00FEEAD2B8F7D3100DFC61D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00FEEBA2B8F7D3200DFC61D /* Preview Assets.xcassets in Resources */,
+				A00FEEB72B8F7D3200DFC61D /* Assets.xcassets in Resources */,
+				A01A9CF02B913F0100B325F7 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00FEEBD2B8F7D3200DFC61D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00FEEC72B8F7D3200DFC61D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A00FEEAB2B8F7D3100DFC61D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00FEEED2B8F898100DFC61D /* StampLocation.swift in Sources */,
+				A01A9CE72B913CF200B325F7 /* AuthManager.swift in Sources */,
+				A00FEEB52B8F7D3100DFC61D /* ContentView.swift in Sources */,
+				A00FEEE02B8F7DD100DFC61D /* MapView.swift in Sources */,
+				A01A9CF42B91416100B325F7 /* AppleSignInManager.swift in Sources */,
+				A00FEEE42B8F7F2300DFC61D /* StampsView.swift in Sources */,
+				A00FEEB32B8F7D3100DFC61D /* Airport_StampsApp.swift in Sources */,
+				A00FEEEB2B8F842D00DFC61D /* LocationManager.swift in Sources */,
+				A01A9CE12B90C43500B325F7 /* StampsAppView.swift in Sources */,
+				A01A9CEE2B913E0B00B325F7 /* GoogleSignInManager.swift in Sources */,
+				A09A3CDE2B918406004FE834 /* User.swift in Sources */,
+				A00FEEE82B8F835900DFC61D /* MapViewModel.swift in Sources */,
+				A09A3CDA2B9181A1004FE834 /* Stamp.swift in Sources */,
+				A00FEF0A2B8FBAB300DFC61D /* FirebaseService.swift in Sources */,
+				A00FEEE62B8F7F3200DFC61D /* ProfileView.swift in Sources */,
+				A01A9CE32B90C45100B325F7 /* LoginView.swift in Sources */,
+				A00FEF062B8FA71E00DFC61D /* MapPanelView.swift in Sources */,
+				A01A9CDF2B90C41B00B325F7 /* StampsAppViewModel.swift in Sources */,
+				A00FEEE22B8F7E2400DFC61D /* Constants.swift in Sources */,
+				A00FEEEF2B8F8B6C00DFC61D /* MapSearchView.swift in Sources */,
+				A00FEF082B8FA7AC00DFC61D /* MapButtonView.swift in Sources */,
+				A09A3CE02B9186A0004FE834 /* CollectedStamp.swift in Sources */,
+				A00FEF0F2B8FBF9800DFC61D /* AnnotationItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00FEEBB2B8F7D3200DFC61D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00FEEC42B8F7D3200DFC61D /* Airport_StampsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00FEEC52B8F7D3200DFC61D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00FEED02B8F7D3200DFC61D /* Airport_StampsUITestsLaunchTests.swift in Sources */,
+				A00FEECE2B8F7D3200DFC61D /* Airport_StampsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A00FEEC12B8F7D3200DFC61D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A00FEEAE2B8F7D3100DFC61D /* Airport Stamps */;
+			targetProxy = A00FEEC02B8F7D3200DFC61D /* PBXContainerItemProxy */;
+		};
+		A00FEECB2B8F7D3200DFC61D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A00FEEAE2B8F7D3100DFC61D /* Airport Stamps */;
+			targetProxy = A00FEECA2B8F7D3200DFC61D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A00FEED12B8F7D3200DFC61D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A00FEED22B8F7D3200DFC61D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A00FEED42B8F7D3200DFC61D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Airport Stamps/Airport Stamps.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Airport Stamps/Preview Content\"";
+				DEVELOPMENT_TEAM = 8XCM92Q3Y3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Airport-Stamps-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We would like to use your location to provide a better in app experience and to verify your airport visits.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumatapps.airport-stamps-va";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A00FEED52B8F7D3200DFC61D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Airport Stamps/Airport Stamps.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Airport Stamps/Preview Content\"";
+				DEVELOPMENT_TEAM = 8XCM92Q3Y3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Airport-Stamps-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We would like to use your location to provide a better in app experience and to verify your airport visits.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumatapps.airport-stamps-va";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A00FEED72B8F7D3200DFC61D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8XCM92Q3Y3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumatapps.Airport-StampsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Airport Stamps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Airport Stamps";
+			};
+			name = Debug;
+		};
+		A00FEED82B8F7D3200DFC61D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8XCM92Q3Y3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumatapps.Airport-StampsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Airport Stamps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Airport Stamps";
+			};
+			name = Release;
+		};
+		A00FEEDA2B8F7D3200DFC61D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8XCM92Q3Y3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumatapps.Airport-StampsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Airport Stamps";
+			};
+			name = Debug;
+		};
+		A00FEEDB2B8F7D3200DFC61D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8XCM92Q3Y3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumatapps.Airport-StampsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Airport Stamps";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A00FEEAA2B8F7D3100DFC61D /* Build configuration list for PBXProject "Airport Stamps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00FEED12B8F7D3200DFC61D /* Debug */,
+				A00FEED22B8F7D3200DFC61D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00FEED32B8F7D3200DFC61D /* Build configuration list for PBXNativeTarget "Airport Stamps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00FEED42B8F7D3200DFC61D /* Debug */,
+				A00FEED52B8F7D3200DFC61D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00FEED62B8F7D3200DFC61D /* Build configuration list for PBXNativeTarget "Airport StampsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00FEED72B8F7D3200DFC61D /* Debug */,
+				A00FEED82B8F7D3200DFC61D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00FEED92B8F7D3200DFC61D /* Build configuration list for PBXNativeTarget "Airport StampsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00FEEDA2B8F7D3200DFC61D /* Debug */,
+				A00FEEDB2B8F7D3200DFC61D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.21.0;
+			};
+		};
+		A01A9CE82B913DE200B325F7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A00FEEF12B8FA0BC00DFC61D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		A00FEEF32B8FA0BC00DFC61D /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		A00FEEF52B8FA0BC00DFC61D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		A00FEEF72B8FA0BC00DFC61D /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		A00FEEF92B8FA0BC00DFC61D /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		A00FEEFB2B8FA0BC00DFC61D /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		A00FEEFD2B8FA0BC00DFC61D /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		A00FEEFF2B8FA0BC00DFC61D /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		A00FEF012B8FA0BC00DFC61D /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		A01A9CE92B913DE200B325F7 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A01A9CE82B913DE200B325F7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		A01A9CEB2B913DE200B325F7 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A01A9CE82B913DE200B325F7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A00FEEA72B8F7D3100DFC61D /* Project object */;
+}
