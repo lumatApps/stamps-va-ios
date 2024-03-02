@@ -14,9 +14,26 @@ import FirebaseDatabase
 
 enum FirebaseService {
     static let firestoreDatabase = Firestore.firestore()
+    
+    
+    static func addOrUpdateDocument<T: Encodable>(to collection: String, id: String, object: T, merge: Bool = true) async throws {
+        do {
+            // Encode the object of type T
+            let encodedObject = try Firestore.Encoder().encode(object)
+            // Update the document with the provided id in the specified collection
+            // If merge is true, it updates fields in the document or creates it if doesn't exist
+            try await firestoreDatabase.collection(collection)
+                .document(id)
+                .setData(encodedObject, merge: merge)
+        } catch {
+            // If encoding fails or setting the data fails, throw the error
+            throw error
+        }
+    }
+
 
     static func fetchAllDocuments<T: Decodable>(from collection: String) async throws -> [T] {
-        let collectionRef = Firestore.firestore().collection(collection)
+        let collectionRef = firestoreDatabase.collection(collection)
         let querySnapshot = try await collectionRef.getDocuments()
         
         var results: [T] = []
@@ -34,20 +51,29 @@ enum FirebaseService {
         
         return results
     }
-
     
-    static func fetchDocument<T: Decodable>(from collection: String, documentId: String, decodeKey: String) async throws -> T {
+
+    static func fetchDocument<T: Decodable>(from collection: String, documentId: String) async throws -> T {
         let documentRef = firestoreDatabase.collection(collection).document(documentId)
         let documentSnapshot = try await documentRef.getDocument()
 
-        guard let documentData = documentSnapshot.data(), let data = documentData[decodeKey] else {
-            throw NSError(domain: "FirebaseServiceError", code: 404, userInfo: [NSLocalizedDescriptionKey: "Document not found or key not found in document"])
+        guard documentSnapshot.exists else {
+            throw FirestoreError.documentNotFound
         }
 
-        // Convert the specific part of the document data to JSON data
-        let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-        // Decode the JSON data to the specified Decodable type T
-        let result = try JSONDecoder().decode(T.self, from: jsonData)
-        return result
+        do {
+            // Try to directly decode the document into type T
+            let decodedDocument = try documentSnapshot.data(as: T.self)
+            return decodedDocument
+        } catch {
+            // If there's a decoding error, throw it as a FirestoreError.other
+            throw FirestoreError.other(error)
+        }
     }
+}
+
+
+enum FirestoreError: Error {
+    case documentNotFound
+    case other(Error) // To encapsulate other Firestore errors
 }

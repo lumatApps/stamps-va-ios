@@ -17,12 +17,14 @@ struct Airport_StampsApp: App {
     // ViewModels
     @State private var stampsAppViewModel: StampsAppViewModel
     @State private var mapViewModel: MapViewModel
+    @State private var profileViewModel: ProfileViewModel
 
     init() {
         FirebaseApp.configure()
         authManager = AuthManager()
         stampsAppViewModel = StampsAppViewModel()
         mapViewModel = MapViewModel()
+        profileViewModel = ProfileViewModel()
     }
     
     var body: some Scene {
@@ -32,6 +34,7 @@ struct Airport_StampsApp: App {
                 .environment(locationManager)
                 .environment(stampsAppViewModel)
                 .environment(mapViewModel)
+                .environment(profileViewModel)
         }
     }
 }

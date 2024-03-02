@@ -5,7 +5,6 @@
 //  Created by Jared William Tamulynas on 2/29/24.
 //
 
-
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import CoreLocation

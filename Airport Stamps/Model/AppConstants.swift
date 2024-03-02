@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Constants {
+struct AppConstants {
     // Tab view constants
-    static let map: (tab: String, icon: String, title: String) = ("Map", "map", "Locations")
-    static let stamps: (tab: String, icon: String, title: String) = ("Stamps", "square.grid.3x3", "Stamps")
+    static let map: (tab: String, icon: String, title: String) = ("Map", "map", "Stamp Locations")
+    static let stamps: (tab: String, icon: String, title: String) = ("Stamps", "square.grid.3x3", "Collected Stamps")
     static let profile: (tab: String, icon: String, title: String) = ("Profile", "person", "Profile")
 }

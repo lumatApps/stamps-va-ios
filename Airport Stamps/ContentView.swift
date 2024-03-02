@@ -9,10 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(AuthManager.self) var authManager
+    @Environment(ProfileViewModel.self) var profileViewModel
     
     var body: some View {
         if authManager.authState != .signedOut {
             StampsAppView()
+                .onAppear {
+                    Task {
+                        await profileViewModel.loadCollector(authManager: authManager)
+                    }
+                }
         } else {
             LoginView()
         }

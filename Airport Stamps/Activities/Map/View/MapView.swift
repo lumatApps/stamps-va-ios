@@ -10,10 +10,11 @@ import SwiftData
 import MapKit
 
 struct MapView: View {
-    static let tag = Constants.map.tab
+    static let tag = AppConstants.map.tab
     @Environment(LocationManager.self) var locationManager
     @Environment(MapViewModel.self) var mapViewModel
-    @State private var selectedAirport: Airport.ID
+    @Environment(ProfileViewModel.self) var profileViewModel
+//    @State private var selectedAirport: Airport.ID
     @State private var searchText = ""
     @State private var dismissSearch = false
     @Namespace var mapScope
@@ -26,8 +27,9 @@ struct MapView: View {
                 Map(position: $mapViewModel.position, scope: mapScope) {
                     UserAnnotation()
                     
-                    ForEach($mapViewModel.locations) { $location in
-                        Marker(location.name, systemImage: location.icon, coordinate: location.coordinates)
+                    ForEach($mapViewModel.stamps) { $stamp in
+                        Marker(stamp.name, systemImage: stamp.icon, coordinate: stamp.coordinates)
+                            .tint(profileViewModel.stamps.contains { $0.id == stamp.id } ? .green : .red)
                     }
                 }
                 
@@ -77,14 +79,14 @@ struct MapView: View {
                     locationManager.requestPermission()
                 }
             }
-            .navigationTitle(Constants.map.title)
+            .navigationTitle(AppConstants.map.title)
             .navigationBarTitleDisplayMode(.inline)
         }
     }
     
     // Returns the building results when a user enters text in the search field
-    var searchResults: [StampLocation] {
-        mapViewModel.locations.filter {
+    var searchResults: [Stamp] {
+        mapViewModel.stamps.filter {
             $0.name.lowercased().contains(searchText.lowercased())
         }
     }

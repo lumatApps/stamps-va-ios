@@ -12,7 +12,7 @@ import MapKit
 
 @Observable class MapViewModel {
     var position: MapCameraPosition = .automatic
-    var locations: [StampLocation] = []
+    var stamps: [Stamp] = []
     
     init() {
         Task {
@@ -26,7 +26,7 @@ import MapKit
     
     func fetchStampLocationsCloud() async {
         do {
-            locations = try await FirebaseService.fetchAllDocuments(from: "airports")
+            stamps = try await FirebaseService.fetchAllDocuments(from: "stamps")
         } catch {
             print("Error fetching document: \(error)")
         }

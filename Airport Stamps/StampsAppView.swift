@@ -13,19 +13,19 @@ struct StampsAppView: View {
             MapView()
                 .tag(MapView.tag)
                 .tabItem {
-                    Label(Constants.map.tab, systemImage: Constants.map.icon)
+                    Label(AppConstants.map.tab, systemImage: AppConstants.map.icon)
                 }
             
             StampsView()
                 .tag(StampsView.tag)
                 .tabItem {
-                    Label(Constants.stamps.tab, systemImage: Constants.stamps.icon)
+                    Label(AppConstants.stamps.tab, systemImage: AppConstants.stamps.icon)
                 }
             
             ProfileView()
                 .tag(ProfileView.tag)
                 .tabItem {
-                    Label(Constants.profile.tab, systemImage: Constants.profile.icon)
+                    Label(AppConstants.profile.tab, systemImage: AppConstants.profile.icon)
                 }
         }
     }

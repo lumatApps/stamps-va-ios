@@ -16,48 +16,45 @@ struct LoginView: View {
     @Environment(AuthManager.self) var authManager
 
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 16) {
-                Spacer()
-                Image("loginScreen")
+        VStack(spacing: 16) {
+            Spacer()
+            Image("loginScreen")
 //                    .foregroundStyle(Color(.loginBlue))
-                    .padding()
-                Spacer()
+                .padding()
+            Spacer()
 
-                // MARK: - Apple
-                SignInWithAppleButton(
-                    onRequest: { request in
-                        AppleSignInManager.shared.requestAppleAuthorization(request)
-                    },
-                    onCompletion: { result in
-                        handleAppleID(result)
-                    }
-                )
-                .signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
-                .frame(width: 280, height: 45, alignment: .center)
-
-                // MARK: - Google
-                GoogleSignInButton {
-                    signInWithGoogle()
+            // MARK: - Apple
+            SignInWithAppleButton(
+                onRequest: { request in
+                    AppleSignInManager.shared.requestAppleAuthorization(request)
+                },
+                onCompletion: { result in
+                    handleAppleID(result)
                 }
-                .frame(width: 280, height: 45, alignment: .center)
+            )
+            .signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
+            .frame(width: 280, height: 45, alignment: .center)
 
-                // MARK: - Anonymous
-                // Hide `Skip` button if user is anonymous.
-                if authManager.authState == .signedOut {
-                    Button {
-                        signAnonymously()
-                    } label: {
-                        Text("Skip")
-                            .font(.body.bold())
-                            .frame(width: 280, height: 45, alignment: .center)
-                    }
+            // MARK: - Google
+            GoogleSignInButton {
+                signInWithGoogle()
+            }
+            .frame(width: 280, height: 45, alignment: .center)
+
+            // MARK: - Anonymous
+            // Hide `Skip` button if user is anonymous.
+            if authManager.authState == .signedOut {
+                Button {
+                    signAnonymously()
+                } label: {
+                    Text("Skip")
+                        .font(.body.bold())
+                        .frame(width: 280, height: 45, alignment: .center)
                 }
             }
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//            .background(Color(.loginYellow))
         }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     /// Sign in with `Google`, and authenticate with `Firebase`.
@@ -127,6 +124,7 @@ struct LoginView: View {
             }
         }
     }
+
 }
 
 #Preview {

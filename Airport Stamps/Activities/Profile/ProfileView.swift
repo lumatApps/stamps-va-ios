@@ -8,41 +8,46 @@
 import SwiftUI
 
 struct ProfileView: View {
-    static let tag = Constants.profile.tab
-    
+    static let tag = AppConstants.profile.tab
     @Environment(AuthManager.self) var authManager
+    @Environment(ProfileViewModel.self) var profileViewModel
     @State private var showLoginSheet = false
     
     var body: some View {
-        VStack {
-            Button {
-                if authManager.authState != .signedIn {
-                    showLoginSheet = true
-                } else {
-                    signOut()
+        @Bindable var profileViewModel = profileViewModel
+        
+        NavigationStack {
+            Form {
+                Section(header: Text("Personal Information")) {
+                    TextField("First Name", text: $profileViewModel.firstName)
+                    TextField("Last Name", text: $profileViewModel.lastName)
+                    TextField("Email", text: $profileViewModel.email)
                 }
-            } label: {
-                Text(authManager.authState != .signedIn ? "Sign-in" :"Sign out")
-                    .font(.body.bold())
-                    .frame(width: 120, height: 45, alignment: .center)
-                    .foregroundStyle(.yellow)
-                    .background(.blue)
-                    .cornerRadius(10)
+                
+                
+                Button("Save") {
+                    Task {
+                        await profileViewModel.save(authManager: authManager)
+                    }
+                }
+                
+                HStack{
+                    
+                    Text("3 Stamps collected")
+                }
+                
+                Button(authManager.authState != .signedIn ? "Sign-in" : "Sign out") {
+                    if authManager.authState != .signedIn {
+                        showLoginSheet = true
+                    } else {
+                        Task {
+                            await profileViewModel.signOut(authManager: authManager)
+                        }
+                    }
+                }
             }
-        }
-        .sheet(isPresented: $showLoginSheet) {
-            LoginView()
-        }
-    }
-    
-    
-    func signOut() {
-        Task {
-            do {
-                try await authManager.signOut()
-            }
-            catch {
-                print("Error: \(error)")
+            .sheet(isPresented: $showLoginSheet) {
+                LoginView()
             }
         }
     }
@@ -50,4 +55,6 @@ struct ProfileView: View {
 
 #Preview {
     ProfileView()
+        .environment(AuthManager())
+        .environment(ProfileViewModel())
 }
