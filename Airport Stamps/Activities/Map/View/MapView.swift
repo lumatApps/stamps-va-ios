@@ -14,7 +14,7 @@ struct MapView: View {
     @Environment(LocationManager.self) var locationManager
     @Environment(MapViewModel.self) var mapViewModel
     @Environment(ProfileViewModel.self) var profileViewModel
-//    @State private var selectedAirport: Airport.ID
+    @State private var selectedItem: Stamp.ID?
     @State private var searchText = ""
     @State private var dismissSearch = false
     @Namespace var mapScope
@@ -24,7 +24,7 @@ struct MapView: View {
         
         NavigationStack {
             ZStack {
-                Map(position: $mapViewModel.position, scope: mapScope) {
+                Map(position: $mapViewModel.position, selection: $selectedItem, scope: mapScope) {
                     UserAnnotation()
                     
                     ForEach($mapViewModel.stamps) { $stamp in
@@ -38,11 +38,11 @@ struct MapView: View {
             .overlay(alignment: .topTrailing) {
                 ViewThatFits {
                     VStack {
-                        MapPanelView(mapViewModel: mapViewModel, mapScope: mapScope)
+                        MapPanelView(mapScope: mapScope)
                     }
                     
                     HStack {
-                        MapPanelView(mapViewModel: mapViewModel, mapScope: mapScope)
+                        MapPanelView(mapScope: mapScope)
                     }
                 }
                 .padding(8)

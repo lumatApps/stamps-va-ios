@@ -45,6 +45,7 @@
 		A01A9CF42B91416100B325F7 /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CF32B91416100B325F7 /* AppleSignInManager.swift */; };
 		A01FB5862B9264D200873DE0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01FB5852B9264D200873DE0 /* ProfileViewModel.swift */; };
 		A01FB5882B928D7300873DE0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01FB5872B928D7300873DE0 /* LoginViewModel.swift */; };
+		A01FB58B2B92CEBD00873DE0 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = A01FB58A2B92CEBD00873DE0 /* CodeScanner */; };
 		A09A3CDA2B9181A1004FE834 /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CD92B9181A1004FE834 /* Stamp.swift */; };
 		A09A3CDE2B918406004FE834 /* Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDD2B918406004FE834 /* Collector.swift */; };
 		A09A3CE02B9186A0004FE834 /* CollectedStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */; };
@@ -118,6 +119,7 @@
 				A01A9CEA2B913DE200B325F7 /* GoogleSignIn in Frameworks */,
 				A00FEEFE2B8FA0BC00DFC61D /* FirebaseFirestoreSwift in Frameworks */,
 				A00FEEF82B8FA0BC00DFC61D /* FirebaseDatabase in Frameworks */,
+				A01FB58B2B92CEBD00873DE0 /* CodeScanner in Frameworks */,
 				A00FEEF22B8FA0BC00DFC61D /* FirebaseAnalytics in Frameworks */,
 				A00FEEFC2B8FA0BC00DFC61D /* FirebaseFirestore in Frameworks */,
 				A01A9CEC2B913DE200B325F7 /* GoogleSignInSwift in Frameworks */,
@@ -322,6 +324,7 @@
 				A00FEF012B8FA0BC00DFC61D /* FirebaseMessaging */,
 				A01A9CE92B913DE200B325F7 /* GoogleSignIn */,
 				A01A9CEB2B913DE200B325F7 /* GoogleSignInSwift */,
+				A01FB58A2B92CEBD00873DE0 /* CodeScanner */,
 			);
 			productName = "Airport Stamps";
 			productReference = A00FEEAF2B8F7D3100DFC61D /* Airport Stamps.app */;
@@ -398,6 +401,7 @@
 			packageReferences = (
 				A00FEEF02B8FA0BC00DFC61D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A01A9CE82B913DE200B325F7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				A01FB5892B92CEBD00873DE0 /* XCRemoteSwiftPackageReference "codescanner" */,
 			);
 			productRefGroup = A00FEEB02B8F7D3100DFC61D /* Products */;
 			projectDirPath = "";
@@ -635,6 +639,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Airport-Stamps-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We would like to use your location to provide a better in app experience and to verify your airport visits.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -670,6 +675,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Airport-Stamps-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We would like to use your location to provide a better in app experience and to verify your airport visits.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -825,6 +831,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		A01FB5892B92CEBD00873DE0 /* XCRemoteSwiftPackageReference "codescanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/codescanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -882,6 +896,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A01A9CE82B913DE200B325F7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		A01FB58A2B92CEBD00873DE0 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A01FB5892B92CEBD00873DE0 /* XCRemoteSwiftPackageReference "codescanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
