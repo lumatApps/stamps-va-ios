@@ -15,9 +15,32 @@ struct MapView: View {
     @Environment(MapViewModel.self) var mapViewModel
     @Environment(ProfileViewModel.self) var profileViewModel
     @State private var selectedItem: Stamp.ID?
+    @State private var isSheetPresented = false
     @State private var searchText = ""
     @State private var dismissSearch = false
     @Namespace var mapScope
+    
+    var filteredStamps: [Stamp] {
+        switch mapViewModel.stampVisibility {
+        case .all:
+            return mapViewModel.stamps
+        case .collected:
+            // Filter stamps that are contained within profileViewModel.stamps
+            return mapViewModel.stamps.filter { stamp in
+                profileViewModel.stamps.contains(where: { profileStamp in
+                    profileStamp.id == stamp.id
+                })
+            }
+        case .uncollected:
+            // Assuming there's a need to check against profileViewModel.stamps to determine if uncollected
+            return mapViewModel.stamps.filter { stamp in
+                !profileViewModel.stamps.contains(where: { profileStamp in
+                    profileStamp.id == stamp.id
+                })
+            }
+        }
+    }
+
     
     var body: some View {
         @Bindable var mapViewModel = mapViewModel
@@ -27,7 +50,7 @@ struct MapView: View {
                 Map(position: $mapViewModel.position, selection: $selectedItem, scope: mapScope) {
                     UserAnnotation()
                     
-                    ForEach($mapViewModel.stamps) { $stamp in
+                    ForEach(filteredStamps) { stamp in
                         Marker(stamp.name, systemImage: stamp.icon, coordinate: stamp.coordinates)
                             .tint(profileViewModel.stamps.contains { $0.id == stamp.id } ? .green : .red)
                     }
@@ -36,47 +59,40 @@ struct MapView: View {
                 MapSearchView(dismiss: $dismissSearch)
             }
             .overlay(alignment: .topTrailing) {
-                ViewThatFits {
-                    VStack {
-                        MapPanelView(mapScope: mapScope)
-                    }
-                    
-                    HStack {
-                        MapPanelView(mapScope: mapScope)
-                    }
-                }
-                .padding(8)
+                MapPanelView(selectedItem: $selectedItem, mapScope: mapScope)
             }
             .mapScope(mapScope)
             .mapControls {
                 MapScaleView(scope: mapScope)
             }
             .mapStyle(.hybrid(elevation: .realistic))
-            .onMapCameraChange { camera in
-                //
+            .onChange(of: selectedItem) {
+                if let selectedItem {
+                    if let item = mapViewModel.stamps.first(where: { $0.id == selectedItem }) {
+                        isSheetPresented.toggle()
+                        mapViewModel.goTo(item: MKMapItem(latitude: item.coordinates.latitude, longitude: item.coordinates.longitude))
+                    }
+                }
             }
-//            .onChange(of: selectedItem) {
-//                if let selectedItem {
-//                    if let item = mapViewModel.annotationItems.first(where: { $0.id == selectedItem }) {
-//                        mapViewModel.goTo(item: MKMapItem(latitude: item.coordinate.latitude, longitude: item.coordinate.longitude))
-//                    }
-//                }
-//            }
-//            .safeAreaInset(edge: .bottom) {
-//                HStack {
-//                    Spacer()
-//                }
-//                .background(.thinMaterial)
-//            }
-//            .searchable(text: $searchText, prompt: Constants.searchPrompt) {
-//                ForEach(searchResults) { result in
-//                    Text(result.title).searchCompletion(result.title)
-//                }
-//            }
-//            .onSubmit(of: .search, search)
+            .sheet(isPresented: $isSheetPresented) {
+                if let item = mapViewModel.stamps.first(where: { $0.id == selectedItem }) {
+                    MapSheetDetailView(stamp: item)
+                }
+            }
+            .searchable(text: $searchText, prompt: Constants.searchPrompt) {
+                ForEach(searchResults) { result in
+                    Text(result.name).searchCompletion(result.name)
+                }
+            }
+            .onSubmit(of: .search, search)
             .onAppear {
                 if locationManager.authorizationStatus == .notDetermined {
                     locationManager.requestPermission()
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    MapFilterView()
                 }
             }
             .navigationTitle(AppConstants.map.title)
@@ -98,7 +114,7 @@ struct MapView: View {
         }
 
         if let item = searchResults.first {
-//            mapViewModel.goTo(item: MKMapItem(latitude: item.coordinates.latitude, longitude: item.coordinates.longitude))
+            mapViewModel.goTo(item: MKMapItem(latitude: item.coordinates.latitude, longitude: item.coordinates.longitude))
         } else {
             //hapticViewModel.playFailureHapticFeedback()
         }
@@ -106,7 +122,7 @@ struct MapView: View {
 
     
     private struct Constants {
-        static let searchPrompt = "Search for an airport..."
+        static let searchPrompt = "Search for stamp locations..."
     }
 }
 

@@ -13,9 +13,10 @@ struct Stamp: Identifiable, Decodable {
     var id: String
     var name: String
     var coordinates: CLLocationCoordinate2D
+    var elevation: Double
+    var length: Double
     var type: String
     var icon: String
-    var stampURL: String
     var notes: String
     var secondaryIdentifier: String
 
@@ -23,9 +24,10 @@ struct Stamp: Identifiable, Decodable {
         case id
         case name
         case coordinates
+        case elevation
+        case length
         case type
         case icon
-        case stampURL
         case notes
         case secondaryIdentifier
     }
@@ -39,9 +41,10 @@ struct Stamp: Identifiable, Decodable {
         let geoPoint = try container.decode(GeoPoint.self, forKey: .coordinates)
         coordinates = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
         
+        elevation = try container.decode(Double.self, forKey: .elevation)
+        length = try container.decode(Double.self, forKey: .length)
         type = try container.decode(String.self, forKey: .type)
         icon = try container.decode(String.self, forKey: .icon)
-        stampURL = try container.decode(String.self, forKey: .stampURL)
         notes = try container.decode(String.self, forKey: .notes)
         secondaryIdentifier = try container.decode(String.self, forKey: .secondaryIdentifier)
     }

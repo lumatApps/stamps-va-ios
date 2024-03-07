@@ -12,9 +12,6 @@ struct StampsView: View {
     
     @Environment(ProfileViewModel.self) var profileViewModel
     
-    
-    
-    
     var columns: [GridItem] {
         [GridItem(.flexible(minimum: 100, maximum: 150)),
          GridItem(.flexible(minimum: 100, maximum: 150)),

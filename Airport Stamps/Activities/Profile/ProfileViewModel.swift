@@ -52,6 +52,15 @@ import Foundation
         }
     }
 
+    func addStamp(id: String) -> Bool {
+        if !stamps.contains(where: { $0.id == id }) {
+            let newCollectedStamp = CollectedStamp(id: id, dateCollected: Date.now, stampPath: "stamps/\(id)")
+            stamps.append(newCollectedStamp)
+            return true
+        }
+        
+        return false
+    }
     
     func save(authManager: AuthManager) async {
         do {
