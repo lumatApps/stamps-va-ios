@@ -51,6 +51,9 @@
 		A09A3CDA2B9181A1004FE834 /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CD92B9181A1004FE834 /* Stamp.swift */; };
 		A09A3CDE2B918406004FE834 /* Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDD2B918406004FE834 /* Collector.swift */; };
 		A09A3CE02B9186A0004FE834 /* CollectedStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */; };
+		A0C259E82B9AC59F002282D5 /* StampsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C259E72B9AC59F002282D5 /* StampsGridView.swift */; };
+		A0C259EA2B9B59EE002282D5 /* RewardProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C259E92B9B59EE002282D5 /* RewardProgressView.swift */; };
+		A0C259EC2B9B5B36002282D5 /* PastVisitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C259EB2B9B5B36002282D5 /* PastVisitsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +111,9 @@
 		A09A3CD92B9181A1004FE834 /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
 		A09A3CDD2B918406004FE834 /* Collector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collector.swift; sourceTree = "<group>"; };
 		A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectedStamp.swift; sourceTree = "<group>"; };
+		A0C259E72B9AC59F002282D5 /* StampsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsGridView.swift; sourceTree = "<group>"; };
+		A0C259E92B9B59EE002282D5 /* RewardProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardProgressView.swift; sourceTree = "<group>"; };
+		A0C259EB2B9B5B36002282D5 /* PastVisitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastVisitsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				A00FEEE32B8F7F2300DFC61D /* StampsView.swift */,
+				A0C259E72B9AC59F002282D5 /* StampsGridView.swift */,
+				A0C259E92B9B59EE002282D5 /* RewardProgressView.swift */,
 			);
 			path = Stamps;
 			sourceTree = "<group>";
@@ -234,8 +242,9 @@
 			isa = PBXGroup;
 			children = (
 				A00FEEE52B8F7F3200DFC61D /* ProfileView.swift */,
-				A01FB5852B9264D200873DE0 /* ProfileViewModel.swift */,
 				A09A3CDD2B918406004FE834 /* Collector.swift */,
+				A0C259EB2B9B5B36002282D5 /* PastVisitsView.swift */,
+				A01FB5852B9264D200873DE0 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -452,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C259E82B9AC59F002282D5 /* StampsGridView.swift in Sources */,
 				A01A9CE72B913CF200B325F7 /* AuthManager.swift in Sources */,
 				A00FEEB52B8F7D3100DFC61D /* ContentView.swift in Sources */,
 				A00FEEE02B8F7DD100DFC61D /* MapView.swift in Sources */,
@@ -459,8 +469,10 @@
 				A00FEEE42B8F7F2300DFC61D /* StampsView.swift in Sources */,
 				A06A86252B99E91900E61F64 /* MapFilterView.swift in Sources */,
 				A01FB5862B9264D200873DE0 /* ProfileViewModel.swift in Sources */,
+				A0C259EA2B9B59EE002282D5 /* RewardProgressView.swift in Sources */,
 				A00FEEB32B8F7D3100DFC61D /* Airport_StampsApp.swift in Sources */,
 				A00FEEEB2B8F842D00DFC61D /* LocationManager.swift in Sources */,
+				A0C259EC2B9B5B36002282D5 /* PastVisitsView.swift in Sources */,
 				A01A9CE12B90C43500B325F7 /* StampsAppView.swift in Sources */,
 				A01A9CEE2B913E0B00B325F7 /* GoogleSignInManager.swift in Sources */,
 				A09A3CDE2B918406004FE834 /* Collector.swift in Sources */,

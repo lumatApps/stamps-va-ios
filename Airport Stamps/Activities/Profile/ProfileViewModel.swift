@@ -21,10 +21,23 @@ import Foundation
         }
     }
     
-    var firstName: String = ""
-    var lastName: String = ""
-    var email: String = ""
+    var firstName: String = "" {
+        didSet {
+            informationUpdated = true
+        }
+    }
+    var lastName: String = "" {
+        didSet {
+            informationUpdated = true
+        }
+    }
+    var email: String = "" {
+        didSet {
+            informationUpdated = true
+        }
+    }
     var stamps: [CollectedStamp] = []
+    var informationUpdated: Bool = false
     
     init() {
         Task {
