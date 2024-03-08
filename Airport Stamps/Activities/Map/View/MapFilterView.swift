@@ -13,7 +13,7 @@ struct MapFilterView: View {
     var body: some View {
         Menu {
             ForEach(StampVisibility.allCases, id: \.self) { stampType in
-                FilterImageButtonView(stampType: stampType)
+                MenuButtonView(stampType: stampType)
             }
         } label: {
             HStack {
@@ -24,7 +24,7 @@ struct MapFilterView: View {
     }
 }
 
-struct FilterImageButtonView: View {
+struct MenuButtonView: View {
     @Environment(MapViewModel.self) var mapViewModel
     var stampType: StampVisibility
     
@@ -32,7 +32,6 @@ struct FilterImageButtonView: View {
         Button {
             mapViewModel.setStampVisibility(to: stampType)
         } label: {
-            FilterImageView(stampType: stampType)
             Text(stampType.rawValue)
         }
     }
@@ -44,15 +43,18 @@ struct FilterImageView: View {
     var body: some View {
         switch stampType {
         case .all:
-            Image(systemName: "mappin.circle")
-                .foregroundStyle(Color.primary)
-            
+            HStack(spacing: 0) {
+                Image(systemName: "mappin")
+                    .foregroundStyle(.green)
+                Image(systemName: "mappin")
+                    .foregroundStyle(.red)
+            }
         case .collected:
-            Image(systemName: "mappin.circle")
-                .foregroundStyle(Color.primary, .green)
+            Image(systemName: "mappin")
+                .foregroundStyle(.green)
         case .uncollected:
-            Image(systemName: "mappin.circle")
-                .foregroundStyle(Color.primary, .red)
+            Image(systemName: "mappin")
+                .foregroundStyle(.red)
         }
     }
 }

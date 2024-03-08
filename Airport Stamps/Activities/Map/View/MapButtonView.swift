@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MapButtonView: View {
     var systemName: String?
-    var imageName: String?
     var primaryColor: Color = Color.accentColor
     var secondaryColor: Color = Color.accentColor
     var action: () -> Void
@@ -20,17 +19,6 @@ struct MapButtonView: View {
                 Image(systemName: systemName)
                     .font(.title2)
                     .foregroundStyle(primaryColor, secondaryColor)
-                    .frame(width: 42, height: 42)
-                    .background(.thickMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-            }
-            
-            if let imageName = imageName {
-                Image(imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(primaryColor)
-                    .padding(5)
                     .frame(width: 42, height: 42)
                     .background(.thickMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
