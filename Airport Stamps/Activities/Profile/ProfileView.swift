@@ -70,11 +70,13 @@ struct ProfileView: View {
                         }
                         
                         HStack {
-                            Text("Reward Level:")
+                            Text("Ambassador Level:")
+                            
                             Spacer()
-                            Text("Bronze")
+                            
+                            Text("N/A")
+                                .foregroundStyle(Color.secondary)
                         }
-                        
                     }
                     
                     Section {
@@ -86,12 +88,15 @@ struct ProfileView: View {
                     }
                 }
                 
-                
                 // PROGRAM INFORMATION
                 Section("Program Information") {
-                    Link("Ambassadors Program", destination: URL(string: "https//doav.virginia.gov/programs-and-services/ambassadors-program/")!)
+                    Link("Ambassadors Program", 
+                         destination: URL(string: "https://doav.virginia.gov/programs-and-services/ambassadors-program/")!
+                    )
                     
-                    Link("Virginia Department of Aviation", destination: URL(string: "https://doav.virginia.gov/")!)
+                    Link("Virginia Department of Aviation", 
+                         destination: URL(string: "https://doav.virginia.gov/")!
+                    )
                     
                     Link(destination: URL(string: "telprompt://8042363624")!) {
                         Label("Contact Us", systemImage: "phone.fill")
@@ -120,6 +125,26 @@ struct ProfileView: View {
             .alert(alertTitle, isPresented: $showingAlert) {
                 Button("OK", role: .cancel) { }
             }
+            .onChange(of: authManager.authState) {
+                if authManager.authState == .signedIn {
+                    Task {
+                        print("sign in load")
+                        await profileViewModel.loadCollector(authManager: authManager)
+                    }
+                }
+            }
+//            .onAppear {
+//                Task {
+//                    guard let isAnonymous = authManager.user?.isAnonymous else {
+//                        return
+//                    }
+//                            
+//                    if profileViewModel.collector == nil && !isAnonymous {
+//                        print("Load Collector - Profile")
+//                        await profileViewModel.loadCollector(authManager: authManager)
+//                    }
+//                }
+//            }
             .navigationTitle(AppConstants.profile.title)
             .navigationBarTitleDisplayMode(.inline)
         }

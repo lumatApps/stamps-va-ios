@@ -38,14 +38,7 @@ import Foundation
     }
     var stamps: [CollectedStamp] = []
     var informationUpdated: Bool = false
-    
-    init() {
-        Task {
-      
-        }
-    }
- 
-    
+
     func loadCollector(authManager: AuthManager) async {
         guard let id = await authManager.user?.uid else {
             print("User ID is nil")
@@ -91,9 +84,19 @@ import Foundation
     func signOut(authManager: AuthManager) async {
         do {
             try await authManager.signOut()
+            reset()
         }
         catch {
             print("Error: \(error)")
         }
+    }
+    
+    
+    func reset() {
+        collector = nil
+        firstName = ""
+        lastName = ""
+        email = ""
+        stamps = []
     }
 }

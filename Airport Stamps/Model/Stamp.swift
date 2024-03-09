@@ -78,9 +78,10 @@ struct Stamp: Identifiable, Decodable {
 enum StampType: String, Codable, CaseIterable {
     case airport = "Airport"
     case museum = "Museum"
-    case test = "Test Location"
-    case unknown
-
+    case seminar = "Seminar"
+    case flyIn = "FlyIn"
+    case test = "Test"
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let decodedString = try container.decode(String.self).lowercased() // Convert to lowercased for comparison
@@ -89,7 +90,8 @@ enum StampType: String, Codable, CaseIterable {
         if let value = StampType.allCases.first(where: { $0.rawValue.lowercased() == decodedString }) {
             self = value
         } else {
-            self = .unknown
+            self = .test
         }
     }
 }
+

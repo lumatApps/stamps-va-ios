@@ -23,7 +23,6 @@ enum AuthState {
 /// Firebase authentication in app.
 @MainActor
 @Observable class AuthManager {
-
     /// Current Firebase auth user.
     var user: User?
 
@@ -112,6 +111,33 @@ enum AuthState {
         }
     }
     
+
+//    /// Creates a new user account with the specified email and password.
+//    /// - Parameters:
+//    ///   - email: User's email address.
+//    ///   - password: User's password.
+//    func emailPasswordAuth(email: String, password: String, createUser: Bool = false) async throws -> AuthDataResult? {
+//        do {
+//            var authResult: AuthDataResult?
+//            
+//            if createUser {
+//                authResult = try await Auth.auth().signIn(withEmail: email, password: password)
+//            } else {
+//                authResult = try await Auth.auth().createUser(withEmail: email, password: password)
+//            }
+//            
+//            if let user = authResult?.user {
+//                updateState(user: user)
+//            }
+//            
+//            return authResult
+//        } catch {
+//            print("FirebaseAuthError: Failed to create user with email and password. \(error.localizedDescription)")
+//            throw error
+//        }
+//    }
+
+    
     /// Authenticate with Firebase using Google `idToken`, and `accessToken` from given `GIDGoogleUser`.
     /// - Parameter user: Signed-in Google user.
     /// - Returns: Auth data.
@@ -162,7 +188,6 @@ enum AuthState {
     }
 
     // MARK: - Sign-in
-
     private func authSignIn(credentials: AuthCredential) async throws -> AuthDataResult? {
         do {
             let result = try await Auth.auth().signIn(with: credentials)
@@ -174,6 +199,7 @@ enum AuthState {
             throw error
         }
     }
+
     
     private func authLink(credentials: AuthCredential) async throws -> AuthDataResult? {
         do {

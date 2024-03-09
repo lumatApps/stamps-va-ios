@@ -16,10 +16,10 @@ struct StampsAppView: View {
                     Label(AppConstants.map.tab, systemImage: AppConstants.map.icon)
                 }
             
-            StampsView()
-                .tag(StampsView.tag)
+            PassportView()
+                .tag(PassportView.tag)
                 .tabItem {
-                    Label(AppConstants.stamps.tab, systemImage: AppConstants.stamps.icon)
+                    Label(AppConstants.passport.tab, systemImage: AppConstants.passport.icon)
                 }
             
             ProfileView()

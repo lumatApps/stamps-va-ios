@@ -121,10 +121,6 @@ struct MapView: View {
                 }
             }
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Text("\(profileViewModel.stamps.count) / \(mapViewModel.stamps.count)")
-                }
-                
                 ToolbarItem(placement: .topBarTrailing) {
                     MapFilterView()
                 }

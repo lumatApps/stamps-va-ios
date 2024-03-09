@@ -11,6 +11,7 @@ struct StampsGridView: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @Environment(ProfileViewModel.self) var profileViewModel
     @Environment(MapViewModel.self) var mapViewModel
+    var collectedStamps: [Stamp]
 
     var columns: [GridItem] {
         switch sizeClass {
@@ -24,9 +25,7 @@ struct StampsGridView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(profileViewModel.stamps) { stamp in
-                    let stampDetail = mapViewModel.stamps.first(where: { $0.id == stamp.id })
-                    
+                ForEach(collectedStamps) { stamp in
                     Button {
                         // no action yet
                     } label: {
@@ -35,9 +34,11 @@ struct StampsGridView: View {
                                 .resizable()
                                 .scaledToFit()
                         } placeholder: {
-                            Image(systemName: stampDetail?.icon ?? "airplane")
-                                .resizable()
-                                .scaledToFit()
+                            Text("✈️")
+                                .font(.system(size: 80))
+//                            Image(systemName: stampDetail?.icon ?? "airplane")
+//                                .resizable()
+//                                .scaledToFit()
                         }
                         .padding()
                     }
@@ -48,8 +49,8 @@ struct StampsGridView: View {
     }
 }
 
-#Preview {
-    StampsGridView()
-        .environment(ProfileViewModel())
-        .environment(MapViewModel())
-}
+//#Preview {
+//    StampsGridView()
+//        .environment(ProfileViewModel())
+//        .environment(MapViewModel())
+//}

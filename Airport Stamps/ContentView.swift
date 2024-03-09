@@ -16,7 +16,10 @@ struct ContentView: View {
             StampsAppView()
                 .onAppear {
                     Task {
-                        await profileViewModel.loadCollector(authManager: authManager)
+                        if authManager.authState == .signedIn {
+                            print("content load ")
+                            await profileViewModel.loadCollector(authManager: authManager)
+                        }
                     }
                 }
         } else {
