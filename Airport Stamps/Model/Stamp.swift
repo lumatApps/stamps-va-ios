@@ -19,6 +19,8 @@ struct Stamp: Identifiable, Decodable {
     var icon: String
     var notes: String
     var secondaryIdentifier: String
+    var alert: String
+    var date: Date? // Optional date property
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -30,9 +32,11 @@ struct Stamp: Identifiable, Decodable {
         case icon
         case notes
         case secondaryIdentifier
+        case alert
+        case date
     }
-    
-    init(id: String, name: String, latitude: Double, longitude: Double, elevation: Double, length: Double, type: StampType, icon: String, notes: String, secondaryIdentifier: String) {
+
+    init(id: String, name: String, latitude: Double, longitude: Double, elevation: Double, length: Double, type: StampType, icon: String, notes: String, secondaryIdentifier: String, alert: String, date: Date? = Date()) {
         self.id = id
         self.name = name
         self.coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -42,25 +46,30 @@ struct Stamp: Identifiable, Decodable {
         self.icon = icon
         self.notes = notes
         self.secondaryIdentifier = secondaryIdentifier
+        self.alert = alert
+        self.date = date // Initialize with current date as default
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
-        
-        // Decoding GeoPoint to CLLocationCoordinate2D
+
         let geoPoint = try container.decode(GeoPoint.self, forKey: .coordinates)
         coordinates = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
-        
+
         elevation = try container.decode(Double.self, forKey: .elevation)
         length = try container.decode(Double.self, forKey: .length)
         type = try container.decode(StampType.self, forKey: .type)
         icon = try container.decode(String.self, forKey: .icon)
         notes = try container.decode(String.self, forKey: .notes)
         secondaryIdentifier = try container.decode(String.self, forKey: .secondaryIdentifier)
+        alert = try container.decode(String.self, forKey: .alert)
+
+        // Handle optional 'date' decoding with a default to current date
+        date = try container.decodeIfPresent(Date.self, forKey: .date) ?? Date()
     }
-    
+
     static let example = Stamp(
         id: "HWY",
         name: "Example Airport",
@@ -71,7 +80,9 @@ struct Stamp: Identifiable, Decodable {
         type: .airport,
         icon: "airplane",
         notes: "Region 1",
-        secondaryIdentifier: "1"
+        secondaryIdentifier: "1",
+        alert: "Weather advisory",
+        date: nil // Example with no specific date, will default to current date
     )
 }
 
@@ -79,7 +90,7 @@ enum StampType: String, Codable, CaseIterable {
     case airport = "Airport"
     case museum = "Museum"
     case seminar = "Seminar"
-    case flyIn = "FlyIn"
+    case flyIn = "Fly-In"
     case test = "Test"
     
     init(from decoder: Decoder) throws {
@@ -94,4 +105,22 @@ enum StampType: String, Codable, CaseIterable {
         }
     }
 }
+
+extension StampType {
+    var key: String {
+        switch self {
+        case .airport:
+            return "airport"
+        case .museum:
+            return "museum"
+        case .seminar:
+            return "seminar"
+        case .flyIn:
+            return "flyIn"
+        case .test:
+            return "test"
+        }
+    }
+}
+
 

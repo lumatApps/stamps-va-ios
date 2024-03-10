@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A00B45162B9CF31F004F824F /* PassportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B45152B9CF31F004F824F /* PassportViewModel.swift */; };
+		A00B45182B9D033F004F824F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00B45172B9D033F004F824F /* Colors.xcassets */; };
+		A00B451C2B9D52A9004F824F /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B451B2B9D52A9004F824F /* LogoView.swift */; };
 		A00FEEB32B8F7D3100DFC61D /* Airport_StampsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEB22B8F7D3100DFC61D /* Airport_StampsApp.swift */; };
 		A00FEEB52B8F7D3100DFC61D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEB42B8F7D3100DFC61D /* ContentView.swift */; };
 		A00FEEB72B8F7D3200DFC61D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00FEEB62B8F7D3200DFC61D /* Assets.xcassets */; };
@@ -33,7 +36,6 @@
 		A00FEF062B8FA71E00DFC61D /* MapPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEF052B8FA71E00DFC61D /* MapPanelView.swift */; };
 		A00FEF082B8FA7AC00DFC61D /* MapButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEF072B8FA7AC00DFC61D /* MapButtonView.swift */; };
 		A00FEF0A2B8FBAB300DFC61D /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEF092B8FBAB300DFC61D /* FirebaseService.swift */; };
-		A01A9CDF2B90C41B00B325F7 /* StampsAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CDE2B90C41B00B325F7 /* StampsAppViewModel.swift */; };
 		A01A9CE12B90C43500B325F7 /* StampsAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CE02B90C43500B325F7 /* StampsAppView.swift */; };
 		A01A9CE32B90C45100B325F7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CE22B90C45100B325F7 /* LoginView.swift */; };
 		A01A9CE72B913CF200B325F7 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CE62B913CF200B325F7 /* AuthManager.swift */; };
@@ -76,6 +78,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A00B45152B9CF31F004F824F /* PassportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportViewModel.swift; sourceTree = "<group>"; };
+		A00B45172B9D033F004F824F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A00B451B2B9D52A9004F824F /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		A00FEEAF2B8F7D3100DFC61D /* Airport Stamps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Airport Stamps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00FEEB22B8F7D3100DFC61D /* Airport_StampsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport_StampsApp.swift; sourceTree = "<group>"; };
 		A00FEEB42B8F7D3100DFC61D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,7 +101,6 @@
 		A00FEF052B8FA71E00DFC61D /* MapPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPanelView.swift; sourceTree = "<group>"; };
 		A00FEF072B8FA7AC00DFC61D /* MapButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonView.swift; sourceTree = "<group>"; };
 		A00FEF092B8FBAB300DFC61D /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
-		A01A9CDE2B90C41B00B325F7 /* StampsAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAppViewModel.swift; sourceTree = "<group>"; };
 		A01A9CE02B90C43500B325F7 /* StampsAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAppView.swift; sourceTree = "<group>"; };
 		A01A9CE22B90C45100B325F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A01A9CE62B913CF200B325F7 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -185,11 +189,11 @@
 				A01A9CE02B90C43500B325F7 /* StampsAppView.swift */,
 				A01A9CE42B90C46100B325F7 /* Login */,
 				A01A9CE52B90C5B300B325F7 /* Model */,
-				A01A9CDE2B90C41B00B325F7 /* StampsAppViewModel.swift */,
 				A09A3CDB2B9183D2004FE834 /* Activities */,
 				A00FEEE92B8F841B00DFC61D /* Services */,
 				A06A86212B99E8CE00E61F64 /* Extensions */,
 				A00FEEB62B8F7D3200DFC61D /* Assets.xcassets */,
+				A00B45172B9D033F004F824F /* Colors.xcassets */,
 				A01A9CEF2B913F0100B325F7 /* GoogleService-Info.plist */,
 				A01A9CF22B91412300B325F7 /* Airport Stamps.entitlements */,
 				A01A9CF12B913F4F00B325F7 /* Airport-Stamps-Info.plist */,
@@ -240,6 +244,7 @@
 				A0C259E72B9AC59F002282D5 /* StampsGridView.swift */,
 				A06E09C72B9C34A500343E2D /* RewardDetailView.swift */,
 				A06E09C22B9C2FD700343E2D /* Model */,
+				A00B45152B9CF31F004F824F /* PassportViewModel.swift */,
 			);
 			path = Passport;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			children = (
 				A01A9CE22B90C45100B325F7 /* LoginView.swift */,
 				A01FB5872B928D7300873DE0 /* LoginViewModel.swift */,
+				A00B451B2B9D52A9004F824F /* LogoView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -449,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A00FEEBA2B8F7D3200DFC61D /* Preview Assets.xcassets in Resources */,
+				A00B45182B9D033F004F824F /* Colors.xcassets in Resources */,
 				A00FEEB72B8F7D3200DFC61D /* Assets.xcassets in Resources */,
 				A01A9CF02B913F0100B325F7 /* GoogleService-Info.plist in Resources */,
 			);
@@ -496,11 +503,12 @@
 				A09A3CDA2B9181A1004FE834 /* Stamp.swift in Sources */,
 				A00FEF0A2B8FBAB300DFC61D /* FirebaseService.swift in Sources */,
 				A00FEEE62B8F7F3200DFC61D /* ProfileView.swift in Sources */,
+				A00B451C2B9D52A9004F824F /* LogoView.swift in Sources */,
 				A01A9CE32B90C45100B325F7 /* LoginView.swift in Sources */,
 				A06A86232B99E8E900E61F64 /* MKMapItem-Extension.swift in Sources */,
 				A06A862B2B9A52AE00E61F64 /* MapSheetView.swift in Sources */,
 				A00FEF062B8FA71E00DFC61D /* MapPanelView.swift in Sources */,
-				A01A9CDF2B90C41B00B325F7 /* StampsAppViewModel.swift in Sources */,
+				A00B45162B9CF31F004F824F /* PassportViewModel.swift in Sources */,
 				A06E09C42B9C2FEA00343E2D /* RewardLevel.swift in Sources */,
 				A00FEEE22B8F7E2400DFC61D /* AppConstants.swift in Sources */,
 				A00FEEEF2B8F8B6C00DFC61D /* MapSearchView.swift in Sources */,

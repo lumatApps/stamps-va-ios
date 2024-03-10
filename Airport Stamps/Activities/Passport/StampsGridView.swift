@@ -29,23 +29,46 @@ struct StampsGridView: View {
                     Button {
                         // no action yet
                     } label: {
-                        AsyncImage(url: URL(string: "https://storage.googleapis.com/stamps-va/stamp-images/\(stamp.id).png")) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                        } placeholder: {
-                            Text("✈️")
-                                .font(.system(size: 80))
-//                            Image(systemName: stampDetail?.icon ?? "airplane")
-//                                .resizable()
-//                                .scaledToFit()
+                        let rotation = Double.random(in: -10..<10)
+                        
+                        AsyncImage(url: URL(string: "https://storage.googleapis.com/stamps-va/stamp-images/\(stamp.id).png")) { phase in
+                            if let image = phase.image {
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .overlay(alignment: .bottom) {
+                                        Text(stamp.id)
+                                            .font(.title3)
+                                            .fontWeight(.heavy)
+                                            .foregroundStyle(.red)
+                                            .background(.ultraThinMaterial)
+                                            .clipShape(RoundedRectangle(cornerRadius: 5, style: .circular))
+                                    }
+                            } else if phase.error != nil {
+                                Image(systemName: stamp.icon)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundStyle(.secondary)
+                                    .overlay(alignment: .bottom) {
+                                        Text(stamp.id)
+                                            .font(.title3)
+                                            .fontWeight(.heavy)
+                                            .foregroundStyle(.red)
+                                            .background(.ultraThinMaterial)
+                                            .clipShape(RoundedRectangle(cornerRadius: 5, style: .circular))
+                                    }
+                            } else {
+                                ProgressView()
+                            }
                         }
+                        .rotationEffect(.degrees(rotation))
                         .padding()
                     }
                     .buttonStyle(.plain)
                 }
             }
         }
+        .background(.passport)
     }
 }
 

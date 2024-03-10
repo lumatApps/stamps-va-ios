@@ -21,12 +21,12 @@ struct PassportView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 0) {
                 RewardProgressView(collectedStamps: collectedStamps)
                 StampsGridView(collectedStamps: collectedStamps)
             }
             .sheet(isPresented: $isShowingRewardDetails) {
-                RewardDetailView()
+                RewardDetailPagesView()
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

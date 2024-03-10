@@ -17,7 +17,6 @@ struct ContentView: View {
                 .onAppear {
                     Task {
                         if authManager.authState == .signedIn {
-                            print("content load ")
                             await profileViewModel.loadCollector(authManager: authManager)
                         }
                     }
@@ -33,4 +32,6 @@ struct ContentView: View {
         .environment(AuthManager())
         .environment(LocationManager())
         .environment(MapViewModel())
+        .environment(PassportViewModel())
+        .environment(ProfileViewModel())
 }

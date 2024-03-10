@@ -38,27 +38,43 @@ struct RewardProgressView: View {
     var body: some View {
         HStack {
             Spacer()
-            RewardProgressItemView(image: "✈️", count: typeCount.airport)
+            RewardProgressItemView(image: "✈️", stampType: StampType.airport, count: typeCount.airport)
             Spacer()
-            RewardProgressItemView(image: "🏛️", count: typeCount.museum)
+            RewardProgressItemView(image: "🏛️", stampType: StampType.museum, count: typeCount.museum)
             Spacer()
-            RewardProgressItemView(image: "🦺", count: typeCount.seminar)
+            RewardProgressItemView(image: "🦺", stampType: StampType.seminar, count: typeCount.seminar)
             Spacer()
-            RewardProgressItemView(image: "🛫", count: typeCount.flyIn)
+            RewardProgressItemView(image: "🛫", stampType: StampType.flyIn, count: typeCount.flyIn)
             Spacer()
         }
         .padding()
+        .background(Material.ultraThickMaterial)
     }
 }
 
 struct RewardProgressItemView: View {
     var image: String
+    var stampType: StampType
     var count: Int
     
     var body: some View {
         VStack {
-            Text(image)
-                .font(.title)
+            AsyncImage(url: URL(string: "https://storage.googleapis.com/stamps-va/stamp-logos/\(stampType.key).png")) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                } else if phase.error != nil {
+                    Text(image)
+                        .font(.title)
+                } else {
+                    ProgressView()
+                }
+            }
+            
+            Text(stampType.rawValue)
+                .font(.caption)
             
             Text("\(count)")
                 .font(.headline)

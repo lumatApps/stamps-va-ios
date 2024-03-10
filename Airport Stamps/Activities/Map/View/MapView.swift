@@ -89,7 +89,14 @@ struct MapView: View {
             }
             .searchable(text: $searchText, prompt: "Search..") {
                 ForEach(searchResults) { result in
-                    Text(result.name).searchCompletion(result.name)
+                    HStack {
+                        Text(result.id)
+                            .bold()
+                            .frame(width: 50, alignment: .leading)
+                        Text(result.name)
+                    }
+                    .foregroundStyle(Color.primary)
+                    .searchCompletion(result.name)
                 }
             }
             .onSubmit(of: .search, search)
@@ -133,7 +140,8 @@ struct MapView: View {
     // Returns the building results when a user enters text in the search field
     var searchResults: [Stamp] {
         mapViewModel.stamps.filter {
-            $0.name.lowercased().contains(searchText.lowercased())
+            $0.name.lowercased().contains(searchText.lowercased()) || 
+            $0.id.lowercased().contains(searchText.lowercased())
         }
     }
 
@@ -149,47 +157,47 @@ struct MapView: View {
     }
 
     func verifyStamp(stamp: Stamp) {
-        let added = profileViewModel.addStamp(id: stamp.id)
-
-        if added {
-            Task {
-                await profileViewModel.save(authManager: authManager)
-                alertTitle = "You Collected a Stamp!"
-                alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
-                showingAlert = true
-            }
-        } else {
-            alertTitle = "Stamp Not Saved"
-            alertMessage = "You have already collected this stamp!"
-            showingAlert = true
-        }
-        
-//        if !locationManager.isAuthorized {
-//            showingAuthAlert.toggle()
-//        } else {
-//            let verified = mapViewModel.verifyUserLocation(locationManager: locationManager, stamp: stamp)
-//            
-//            if verified {
-//                let added = profileViewModel.addStamp(id: stamp.id)
-//                
-//                if added {
-//                    Task {
-//                        await profileViewModel.save(authManager: authManager)
-//                    }
-//                    alertTitle = "You Collected a Stamp!"
-//                    alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
-//                    showingAlert = true
-//                } else {
-//                    alertTitle = "Stamp Not Saved"
-//                    alertMessage = "You have already collected this stamp!"
-//                    showingAlert = true
-//                }
-//            } else {
-//                alertTitle = "Stamp Not Saved"
-//                alertMessage = "We could not verify your location. Please make sure you a nearby a location shown on the map and check you location permissions in settings."
+//        let added = profileViewModel.addStamp(id: stamp.id)
+//
+//        if added {
+//            Task {
+//                await profileViewModel.save(authManager: authManager)
+//                alertTitle = "You Collected a Stamp!"
+//                alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
 //                showingAlert = true
 //            }
+//        } else {
+//            alertTitle = "Stamp Not Saved"
+//            alertMessage = "You have already collected this stamp!"
+//            showingAlert = true
 //        }
+        
+        if !locationManager.isAuthorized {
+            showingAuthAlert.toggle()
+        } else {
+            let verified = mapViewModel.verifyUserLocation(locationManager: locationManager, stamp: stamp)
+            
+            if verified {
+                let added = profileViewModel.addStamp(id: stamp.id)
+                
+                if added {
+                    Task {
+                        await profileViewModel.save(authManager: authManager)
+                    }
+                    alertTitle = "You Collected a Stamp!"
+                    alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
+                    showingAlert = true
+                } else {
+                    alertTitle = "Stamp Not Saved"
+                    alertMessage = "You have already collected this stamp!"
+                    showingAlert = true
+                }
+            } else {
+                alertTitle = "Stamp Not Saved"
+                alertMessage = "We could not verify your location. Please make sure you a nearby a location shown on the map and check you location permissions in settings."
+                showingAlert = true
+            }
+        }
     }
     
     func findNearbyStamp() {
@@ -197,6 +205,10 @@ struct MapView: View {
         
         if let stamp = stamp {
             selectedItem = stamp.id
+        } else {
+            alertTitle = "Stamp Not Found"
+            alertMessage = "It looks you are not located within a stamp locations boundary."
+            showingAlert = true
         }
     }
 }

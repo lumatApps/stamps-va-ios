@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct RewardLevel {
+struct RewardLevel: Codable {
     var name: String
+    var prize: String
     var airports: Int
     var museums: Int
-    var seminar: Int
-    var flyIn: Int
+    var seminars: Int
+    var flyIns: Int
 }

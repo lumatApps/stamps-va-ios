@@ -13,39 +13,13 @@ struct LoginView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     @Environment(AuthManager.self) var authManager
-    @State private var email = ""
-    @State private var password = ""
-    @State private var isCreatingNewAccount = false
 
     var body: some View {
         VStack(spacing: 16) {
             Spacer()
+            LogoView()
+            Spacer()
             
-//            TextField("Email", text: $email)
-//                .textFieldStyle(.roundedBorder)
-//                .padding(.horizontal)
-//                .autocapitalization(.none)
-//                .keyboardType(.emailAddress)
-//                
-//            SecureField("Password", text: $password)
-//                .textFieldStyle(.roundedBorder)
-//                .padding(.horizontal)
-//            
-//            Button("Sign In") {
-//                Task {
-//                    await signInOrCreateAccount()
-//                }
-//            }
-//            .buttonStyle(.borderedProminent)
-//            
-//            Button("Create Account") {
-//                Task {
-//                    await signInOrCreateAccount()
-//                }
-//            }
-//            
-//            Spacer()
-
             // MARK: - Apple
             SignInWithAppleButton(
                 onRequest: { request in
@@ -55,7 +29,7 @@ struct LoginView: View {
                     handleAppleID(result)
                 }
             )
-            .signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
+            .signInWithAppleButtonStyle(.white)
             .frame(width: 280, height: 45, alignment: .center)
 
             // MARK: - Google
@@ -71,13 +45,14 @@ struct LoginView: View {
                     signAnonymously()
                 } label: {
                     Text("Skip")
-                        .font(.body.bold())
-                        .frame(width: 280, height: 45, alignment: .center)
+                        .foregroundStyle(Color.primary)
+                        .bold()
                 }
             }
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.accentColor.opacity(0.5))
     }
 
     /// Sign in with `Google`, and authenticate with `Firebase`.
@@ -134,17 +109,6 @@ struct LoginView: View {
             // Here you can show error message to user.
         }
     }
-    
-//    func signInOrCreateAccount() async {
-//        do {
-//            let result = try await authManager.emailPasswordAuth(email: email, password: password, createUser: isCreatingNewAccount)
-//            print("Authentication success: \(result?.user.email ?? "No Email")")
-//            dismiss()
-//        } catch {
-//            print("Authentication error: \(error.localizedDescription)")
-//            // Handle errors, e.g., show an alert to the user
-//        }
-//    }
 
     /// Sign-in anonymously
     func signAnonymously() {

@@ -15,15 +15,15 @@ struct Airport_StampsApp: App {
     @State private var locationManager = LocationManager()
     
     // ViewModels
-    @State private var stampsAppViewModel: StampsAppViewModel
     @State private var mapViewModel: MapViewModel
+    @State private var passportViewModel: PassportViewModel
     @State private var profileViewModel: ProfileViewModel
 
     init() {
         FirebaseApp.configure()
         authManager = AuthManager()
-        stampsAppViewModel = StampsAppViewModel()
         mapViewModel = MapViewModel()
+        passportViewModel = PassportViewModel()
         profileViewModel = ProfileViewModel()
     }
     
@@ -32,8 +32,8 @@ struct Airport_StampsApp: App {
             ContentView()
                 .environment(authManager)
                 .environment(locationManager)
-                .environment(stampsAppViewModel)
                 .environment(mapViewModel)
+                .environment(passportViewModel)
                 .environment(profileViewModel)
         }
     }
