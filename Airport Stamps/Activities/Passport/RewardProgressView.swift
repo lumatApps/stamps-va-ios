@@ -13,13 +13,13 @@ struct RewardProgressView: View {
     var body: some View {
         HStack {
             Spacer()
-            RewardProgressItemView(image: "✈️", stampType: StampType.airport, count: stampsAppViewModel.stampTypeCount.airport)
+            RewardProgressItemView(image: "✈️", stampType: StampType.airport, count: stampsAppViewModel.collectedStampTypeCount.airport)
             Spacer()
-            RewardProgressItemView(image: "🏛️", stampType: StampType.museum, count: stampsAppViewModel.stampTypeCount.museum)
+            RewardProgressItemView(image: "🏛️", stampType: StampType.museum, count: stampsAppViewModel.collectedStampTypeCount.museum)
             Spacer()
-            RewardProgressItemView(image: "🦺", stampType: StampType.seminar, count: stampsAppViewModel.stampTypeCount.seminar)
+            RewardProgressItemView(image: "🦺", stampType: StampType.seminar, count: stampsAppViewModel.collectedStampTypeCount.seminar)
             Spacer()
-            RewardProgressItemView(image: "🛫", stampType: StampType.flyIn, count: stampsAppViewModel.stampTypeCount.flyIn)
+            RewardProgressItemView(image: "🛫", stampType: StampType.flyIn, count: stampsAppViewModel.collectedStampTypeCount.flyIn)
             Spacer()
         }
         .padding()

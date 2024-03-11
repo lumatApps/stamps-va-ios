@@ -16,10 +16,9 @@ struct ContentView: View {
             if authManager.authState != .signedOut {
                 StampsAppView()
                     .onAppear {
+                        print("Content View On Appear")
                         Task {
-                            if authManager.authState == .signedIn {
-                                await stampsAppViewModel.loadCollector(authManager: authManager)
-                            }
+                            await stampsAppViewModel.attachListeners(authManager: authManager)
                         }
                     }
             } else {

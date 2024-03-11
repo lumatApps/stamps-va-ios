@@ -29,11 +29,30 @@ struct MenuButtonView: View {
     var stampVisibility: StampVisibility
     
     var body: some View {
+        switch stampVisibility {
+        case .all:
+            button(for: stampVisibility, count: stampsAppViewModel.stamps.count)
+        case .collected:
+            button(for: stampVisibility, count: stampsAppViewModel.collectedStamps.count)
+        case .uncollected:
+            button(for: stampVisibility, count: stampsAppViewModel.stamps.count - stampsAppViewModel.collectedStamps.count)
+        case .airports:
+            button(for: stampVisibility, count: stampsAppViewModel.stampTypeCount.airport)
+        case .museums:
+            button(for: stampVisibility, count: stampsAppViewModel.stampTypeCount.museum)
+        case .seminars:
+            button(for: stampVisibility, count: stampsAppViewModel.stampTypeCount.seminar)
+        case .flyIns:
+            button(for: stampVisibility, count: stampsAppViewModel.stampTypeCount.flyIn)
+        }
+    }
+    
+    func button(for visibility: StampVisibility, count: Int) -> some View {
         Button {
-            stampsAppViewModel.setStampVisibility(to: stampVisibility)
+            stampsAppViewModel.setStampVisibility(to: visibility)
             stampsAppViewModel.position = .automatic
         } label: {
-            Text(stampVisibility.rawValue)
+            Text("\(visibility.rawValue) (\(count))")
         }
     }
 }

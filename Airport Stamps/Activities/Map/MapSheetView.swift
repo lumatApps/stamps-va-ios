@@ -39,16 +39,32 @@ struct MapSheetView: View {
                 let elevation = Measurement(value: stamp.elevation, unit: UnitLength.feet)
                 let formattedElevation = formatMeasurement(elevation)
                 
-                Text("Runway Length: \(formattedLength)")
-                Text("Elevation: \(formattedElevation)")
+                Group {
+                    Text("Region \(stamp.secondaryIdentifier.rawValue)")
+                    Text("Runway Length: \(formattedLength)")
+                    Text("Elevation: \(formattedElevation)")
+                }
+                .font(.subheadline)
+            }
+                
+            if !stamp.notes.isEmpty {
+                Text("Notes: \(stamp.notes)")
+                    .font(.footnote)
+                    .lineLimit(nil)
             }
             
-            Text("Notes: \(stamp.notes)")
-                .font(.footnote)
+            if !stamp.alert.isEmpty {
+                Text("Alert: \(stamp.alert)".uppercased())
+                    .font(.footnote)
+                    .foregroundStyle(.red)
+                    .lineLimit(nil)
+            }
+            
+            Spacer()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .presentationDetents([.fraction(0.25)])
+        .presentationDetents([.fraction(0.33)])
     }
     
     private func formatMeasurement(_ measurement: Measurement<UnitLength>) -> String {

@@ -21,7 +21,6 @@ enum AuthState {
 
 /// An environment singleton responsible for handling
 /// Firebase authentication in app.
-@MainActor
 @Observable class AuthManager {
     /// Current Firebase auth user.
     var user: User?

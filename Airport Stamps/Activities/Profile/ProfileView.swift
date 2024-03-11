@@ -128,7 +128,7 @@ struct ProfileView: View {
                 if authManager.authState == .signedIn {
                     Task {
                         print("sign in load")
-                        await stampsAppViewModel.loadCollector(authManager: authManager)
+                        await stampsAppViewModel.attachListeners(authManager: authManager)
                     }
                 }
             }

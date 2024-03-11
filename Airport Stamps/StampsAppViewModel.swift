@@ -71,8 +71,8 @@ import MapKit
     }
     
     var collectedStamps: [Stamp] {
-        return stamps.filter { stamp in
-            checkCollected(stamp: stamp)
+        return collectedStampReferences.compactMap { reference -> Stamp? in
+            return collectedStampsDictionary[reference.id]
         }
     }
     
@@ -84,8 +84,31 @@ import MapKit
         }
     }
 
-    
     var stampTypeCount: (airport: Int, museum: Int, seminar: Int, flyIn: Int) {
+        var airportCount = 0
+        var museumCount = 0
+        var seminarCount = 0
+        var flyInCount = 0
+        
+        for stamp in stamps {
+            switch stamp.type {
+            case .airport:
+                airportCount += 1
+            case .museum:
+                museumCount += 1
+            case .seminar:
+                seminarCount += 1
+            case .flyIn:
+                flyInCount += 1
+            default:
+                print("no type found")
+            }
+        }
+        
+        return (airport: airportCount, museum: museumCount, seminar: seminarCount, flyIn: flyInCount)
+    }
+    
+    var collectedStampTypeCount: (airport: Int, museum: Int, seminar: Int, flyIn: Int) {
         var airportCount = 0
         var museumCount = 0
         var seminarCount = 0
@@ -147,11 +170,12 @@ import MapKit
     // MARK: - INITS
     
     init() {
-        attachStampsListener(from: stampsCollection)
-        attachRewardsListener(from: rewardsCollection)
+//        attachStampsListener(from: stampsCollection)
+//        attachRewardsListener(from: rewardsCollection)
     }
     
     deinit {
+        print("DE INIT")
         detachListeners()
     }
     
@@ -240,25 +264,6 @@ import MapKit
         }
     }
     var informationUpdated: Bool = false
-    
-    
-    func loadCollector(authManager: AuthManager) async {
-        guard let id = await authManager.user?.uid else {
-            print("User ID is nil")
-            return
-        }
-        
-        do {
-            try await attachCollectorListener(collection: collectorsCollection, documentId: id)
-        } catch FirestoreError.documentNotFound {
-            await save(authManager: authManager)
-            print("Document not found, saving new collector.")
-        } catch FirestoreError.other(let error) {
-            print("An error occurred: \(error.localizedDescription)")
-        } catch {
-            print("An unexpected error occurred: \(error.localizedDescription)")
-        }
-    }
 
     func save(authManager: AuthManager) async {
         do {
@@ -286,16 +291,20 @@ import MapKit
     
     func reset() {
         collector = nil
-        stamps = []
+        stamps.removeAll()
+        firstName = ""
+        lastName = ""
+        email = ""
+        detachListeners()
     }
     
     
     
     // MARK: - Listeners
 
-    private var stampsListener: ListenerRegistration?
-    private var collectorListener: ListenerRegistration?
-    private var rewardsListener: ListenerRegistration?
+    var stampsListener: ListenerRegistration?
+    var collectorListener: ListenerRegistration?
+    var rewardsListener: ListenerRegistration?
     
     func attachStampsListener(from collection: String) {
         let collectionRef = FirebaseService.firestoreDatabase.collection(collection)
@@ -368,10 +377,44 @@ import MapKit
         }
     }
 
+    func attachListeners(authManager: AuthManager) async {
+        guard let id = authManager.user?.uid else {
+            print("User ID is nil")
+            return
+        }
+        
+        if authManager.authState == .signedIn {
+            if collectorListener == nil {
+                do {
+                    try await attachCollectorListener(collection: collectorsCollection, documentId: id)
+                } catch FirestoreError.documentNotFound {
+                    await save(authManager: authManager)
+                    print("Document not found, saving new collector.")
+                } catch FirestoreError.other(let error) {
+                    print("An error occurred: \(error.localizedDescription)")
+                } catch {
+                    print("An unexpected error occurred: \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        if stampsListener == nil {
+            attachStampsListener(from: stampsCollection)
+        }
+        
+        if rewardsListener == nil {
+            attachRewardsListener(from: rewardsCollection)
+        }
+        
+        position = .automatic
+    }
     
     func detachListeners() {
         stampsListener?.remove()
+        stampsListener = nil
         collectorListener?.remove()
+        collectorListener = nil
         rewardsListener?.remove()
+        rewardsListener = nil
     }
 }

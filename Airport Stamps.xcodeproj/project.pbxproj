@@ -10,7 +10,6 @@
 		A00B45182B9D033F004F824F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00B45172B9D033F004F824F /* Colors.xcassets */; };
 		A00B451C2B9D52A9004F824F /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B451B2B9D52A9004F824F /* LogoView.swift */; };
 		A00B45222B9D6929004F824F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A00B45212B9D6929004F824F /* GoogleService-Info.plist */; };
-		A00B45242B9D77A9004F824F /* EmailLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B45232B9D77A9004F824F /* EmailLinkView.swift */; };
 		A00FEEB32B8F7D3100DFC61D /* Airport_StampsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEB22B8F7D3100DFC61D /* Airport_StampsApp.swift */; };
 		A00FEEB52B8F7D3100DFC61D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FEEB42B8F7D3100DFC61D /* ContentView.swift */; };
 		A00FEEB72B8F7D3200DFC61D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00FEEB62B8F7D3200DFC61D /* Assets.xcassets */; };
@@ -56,6 +55,8 @@
 		A0C259E82B9AC59F002282D5 /* StampsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C259E72B9AC59F002282D5 /* StampsGridView.swift */; };
 		A0C259EC2B9B5B36002282D5 /* PastVisitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C259EB2B9B5B36002282D5 /* PastVisitsView.swift */; };
 		A0F98B932B9DFD840064964F /* StampsAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F98B922B9DFD840064964F /* StampsAppViewModel.swift */; };
+		A0F98B952B9E8DBF0064964F /* SignInWithEmailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F98B942B9E8DBF0064964F /* SignInWithEmailButton.swift */; };
+		A0F98B972B9E902C0064964F /* EmailSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F98B962B9E902C0064964F /* EmailSignInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +80,6 @@
 		A00B45172B9D033F004F824F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A00B451B2B9D52A9004F824F /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		A00B45212B9D6929004F824F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A00B45232B9D77A9004F824F /* EmailLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLinkView.swift; sourceTree = "<group>"; };
 		A00FEEAF2B8F7D3100DFC61D /* Airport Stamps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Airport Stamps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00FEEB22B8F7D3100DFC61D /* Airport_StampsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport_StampsApp.swift; sourceTree = "<group>"; };
 		A00FEEB42B8F7D3100DFC61D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +118,8 @@
 		A0C259E72B9AC59F002282D5 /* StampsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsGridView.swift; sourceTree = "<group>"; };
 		A0C259EB2B9B5B36002282D5 /* PastVisitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastVisitsView.swift; sourceTree = "<group>"; };
 		A0F98B922B9DFD840064964F /* StampsAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAppViewModel.swift; sourceTree = "<group>"; };
+		A0F98B942B9E8DBF0064964F /* SignInWithEmailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithEmailButton.swift; sourceTree = "<group>"; };
+		A0F98B962B9E902C0064964F /* EmailSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +278,8 @@
 			children = (
 				A01A9CE22B90C45100B325F7 /* LoginView.swift */,
 				A00B451B2B9D52A9004F824F /* LogoView.swift */,
-				A00B45232B9D77A9004F824F /* EmailLinkView.swift */,
+				A0F98B942B9E8DBF0064964F /* SignInWithEmailButton.swift */,
+				A0F98B962B9E902C0064964F /* EmailSignInView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -468,8 +471,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0F98B952B9E8DBF0064964F /* SignInWithEmailButton.swift in Sources */,
 				A0F98B932B9DFD840064964F /* StampsAppViewModel.swift in Sources */,
 				A0C259E82B9AC59F002282D5 /* StampsGridView.swift in Sources */,
+				A0F98B972B9E902C0064964F /* EmailSignInView.swift in Sources */,
 				A01A9CE72B913CF200B325F7 /* AuthManager.swift in Sources */,
 				A00FEEB52B8F7D3100DFC61D /* ContentView.swift in Sources */,
 				A06E09C82B9C34A500343E2D /* RewardDetailView.swift in Sources */,
@@ -479,7 +484,6 @@
 				A06A86252B99E91900E61F64 /* MapFilterView.swift in Sources */,
 				A06E09C62B9C332500343E2D /* RewardProgressView.swift in Sources */,
 				A00FEEB32B8F7D3100DFC61D /* Airport_StampsApp.swift in Sources */,
-				A00B45242B9D77A9004F824F /* EmailLinkView.swift in Sources */,
 				A00FEEEB2B8F842D00DFC61D /* LocationManager.swift in Sources */,
 				A0C259EC2B9B5B36002282D5 /* PastVisitsView.swift in Sources */,
 				A01A9CE12B90C43500B325F7 /* StampsAppView.swift in Sources */,

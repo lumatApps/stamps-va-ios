@@ -14,6 +14,8 @@ struct LoginView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(AuthManager.self) var authManager
     
+    @State private var isShowingEmailSignIn = false
+    
     var body: some View {
         VStack(spacing: 16) {
             Spacer()
@@ -31,13 +33,20 @@ struct LoginView: View {
             )
             .signInWithAppleButtonStyle(.white)
             .frame(width: 280, height: 45, alignment: .center)
+            .shadow(radius: 3)
 
             // MARK: - Google
             GoogleSignInButton {
                 signInWithGoogle()
             }
             .frame(width: 280, height: 45, alignment: .center)
+            .shadow(radius: 3)
 
+            // MARK: - Email / Password
+            SignInWithEmailButton {
+                isShowingEmailSignIn.toggle()
+            }
+            
             // MARK: - Anonymous
             // Hide `Skip` button if user is anonymous.
             if authManager.authState == .signedOut {
@@ -53,6 +62,9 @@ struct LoginView: View {
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.accentColor.opacity(0.25))
+        .sheet(isPresented: $isShowingEmailSignIn) {
+            EmailSignInView()
+        }
     }
 
     /// Sign in with `Google`, and authenticate with `Firebase`.
