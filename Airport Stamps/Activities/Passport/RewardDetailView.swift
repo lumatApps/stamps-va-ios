@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RewardDetailPagesView: View {
-    @Environment(PassportViewModel.self) var passportViewModel
+    @Environment(StampsAppViewModel.self) var stampsAppViewModel
     
     var body: some View {
         TabView {
-            ForEach(passportViewModel.rewardLevels, id: \.name) { level in
+            ForEach(stampsAppViewModel.rewardLevels, id: \.name) { level in
                 RewardDetailView(rewardLevel: level)
             }
         }
@@ -71,4 +71,5 @@ struct RewardDetailView: View {
 
 //#Preview {
 //    RewardDetailView()
+//        .environment(StampsAppViewModel())
 //}

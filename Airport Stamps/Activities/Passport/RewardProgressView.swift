@@ -8,43 +8,18 @@
 import SwiftUI
 
 struct RewardProgressView: View {
-    var collectedStamps: [Stamp]
+    @Environment(StampsAppViewModel.self) var stampsAppViewModel
     
-    var typeCount: (airport: Int, museum: Int, seminar: Int, flyIn: Int, test: Int) {
-        var airportCount = 0
-        var museumCount = 0
-        var seminarCount = 0
-        var flyInCount = 0
-        var testCount = 0
-        
-        for stamp in collectedStamps {
-            switch stamp.type {
-            case .airport:
-                airportCount += 1
-            case .museum:
-                museumCount += 1
-            case .seminar:
-                seminarCount += 1
-            case .flyIn:
-                flyInCount += 1
-            case .test:
-                testCount += 1
-            }
-        }
-        
-        return (airport: airportCount, museum: museumCount, seminar: seminarCount, flyIn: flyInCount, test: testCount)
-    }
-
     var body: some View {
         HStack {
             Spacer()
-            RewardProgressItemView(image: "✈️", stampType: StampType.airport, count: typeCount.airport)
+            RewardProgressItemView(image: "✈️", stampType: StampType.airport, count: stampsAppViewModel.stampTypeCount.airport)
             Spacer()
-            RewardProgressItemView(image: "🏛️", stampType: StampType.museum, count: typeCount.museum)
+            RewardProgressItemView(image: "🏛️", stampType: StampType.museum, count: stampsAppViewModel.stampTypeCount.museum)
             Spacer()
-            RewardProgressItemView(image: "🦺", stampType: StampType.seminar, count: typeCount.seminar)
+            RewardProgressItemView(image: "🦺", stampType: StampType.seminar, count: stampsAppViewModel.stampTypeCount.seminar)
             Spacer()
-            RewardProgressItemView(image: "🛫", stampType: StampType.flyIn, count: typeCount.flyIn)
+            RewardProgressItemView(image: "🛫", stampType: StampType.flyIn, count: stampsAppViewModel.stampTypeCount.flyIn)
             Spacer()
         }
         .padding()

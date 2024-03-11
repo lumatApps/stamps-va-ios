@@ -9,20 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(AuthManager.self) var authManager
-    @Environment(ProfileViewModel.self) var profileViewModel
+    @Environment(StampsAppViewModel.self) var stampsAppViewModel
     
     var body: some View {
-        if authManager.authState != .signedOut {
-            StampsAppView()
-                .onAppear {
-                    Task {
-                        if authManager.authState == .signedIn {
-                            await profileViewModel.loadCollector(authManager: authManager)
+        Group {
+            if authManager.authState != .signedOut {
+                StampsAppView()
+                    .onAppear {
+                        Task {
+                            if authManager.authState == .signedIn {
+                                await stampsAppViewModel.loadCollector(authManager: authManager)
+                            }
                         }
                     }
-                }
-        } else {
-            LoginView()
+            } else {
+                LoginView()
+            }
         }
     }
 }
@@ -31,7 +33,5 @@ struct ContentView: View {
     ContentView()
         .environment(AuthManager())
         .environment(LocationManager())
-        .environment(MapViewModel())
-        .environment(PassportViewModel())
-        .environment(ProfileViewModel())
+        .environment(StampsAppViewModel())
 }

@@ -9,21 +9,13 @@ import SwiftUI
 
 struct PassportView: View {
     static let tag = AppConstants.passport.tab
-    @Environment(ProfileViewModel.self) var profileViewModel
-    @Environment(MapViewModel.self) var mapViewModel
     @State private var isShowingRewardDetails = false
-
-    var collectedStamps: [Stamp] {
-        mapViewModel.stamps.filter { stamp in
-            profileViewModel.stamps.contains(where: { $0.id == stamp.id })
-        }
-    }
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                RewardProgressView(collectedStamps: collectedStamps)
-                StampsGridView(collectedStamps: collectedStamps)
+                RewardProgressView()
+                StampsGridView()
             }
             .sheet(isPresented: $isShowingRewardDetails) {
                 RewardDetailPagesView()
@@ -45,6 +37,4 @@ struct PassportView: View {
 
 #Preview {
     PassportView()
-        .environment(ProfileViewModel())
-        .environment(MapViewModel())
 }

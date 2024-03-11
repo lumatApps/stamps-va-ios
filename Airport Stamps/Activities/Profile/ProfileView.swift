@@ -10,38 +10,37 @@ import SwiftUI
 struct ProfileView: View {
     static let tag = AppConstants.profile.tab
     @Environment(AuthManager.self) var authManager
-    @Environment(ProfileViewModel.self) var profileViewModel
+    @Environment(StampsAppViewModel.self) var stampsAppViewModel
     
     @State private var showLoginSheet = false
     @State private var isSaveDisabled = true
+    
     // Alert
     @State private var showingAlert = false
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     
     var body: some View {
-        @Bindable var profileViewModel = profileViewModel
-        
         NavigationStack {
             List {
                 if authManager.authState == .signedIn {
                     // PERSONAL INFORMATION
                     Section("Personal Information") {
                         TextField("Enter First Name", text: Binding(
-                            get: { self.profileViewModel.firstName },
+                            get: { self.stampsAppViewModel.firstName },
                             set: {
-                                if $0 != self.profileViewModel.firstName {
-                                    self.profileViewModel.firstName = $0
+                                if $0 != self.stampsAppViewModel.firstName {
+                                    self.stampsAppViewModel.firstName = $0
                                     self.isSaveDisabled = false
                                 }
                             }
                         ))
                         
                         TextField("Enter Last Name", text: Binding(
-                            get: { self.profileViewModel.lastName },
+                            get: { self.stampsAppViewModel.lastName },
                             set: {
-                                if $0 != self.profileViewModel.lastName {
-                                    self.profileViewModel.lastName = $0
+                                if $0 != self.stampsAppViewModel.lastName {
+                                    self.stampsAppViewModel.lastName = $0
                                     self.isSaveDisabled = false
                                 }
                             }
@@ -51,7 +50,7 @@ struct ProfileView: View {
                     Section {
                         Button("Save") {
                             Task {
-                                await profileViewModel.save(authManager: authManager)
+                                await stampsAppViewModel.save(authManager: authManager)
                             }
                             alertTitle = "Profile Updated"
                             alertMessage = "Your profile information was saved."
@@ -109,7 +108,7 @@ struct ProfileView: View {
                             showLoginSheet = true
                         } else {
                             Task {
-                                await profileViewModel.signOut(authManager: authManager)
+                                await stampsAppViewModel.signOut(authManager: authManager)
                             }
                         }
                     }
@@ -129,22 +128,10 @@ struct ProfileView: View {
                 if authManager.authState == .signedIn {
                     Task {
                         print("sign in load")
-                        await profileViewModel.loadCollector(authManager: authManager)
+                        await stampsAppViewModel.loadCollector(authManager: authManager)
                     }
                 }
             }
-//            .onAppear {
-//                Task {
-//                    guard let isAnonymous = authManager.user?.isAnonymous else {
-//                        return
-//                    }
-//                            
-//                    if profileViewModel.collector == nil && !isAnonymous {
-//                        print("Load Collector - Profile")
-//                        await profileViewModel.loadCollector(authManager: authManager)
-//                    }
-//                }
-//            }
             .navigationTitle(AppConstants.profile.title)
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -154,5 +141,5 @@ struct ProfileView: View {
 #Preview {
     ProfileView()
         .environment(AuthManager())
-        .environment(ProfileViewModel())
+        .environment(StampsAppViewModel())
 }

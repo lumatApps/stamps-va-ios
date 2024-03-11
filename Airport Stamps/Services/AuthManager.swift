@@ -111,32 +111,43 @@ enum AuthState {
         }
     }
     
-
-//    /// Creates a new user account with the specified email and password.
-//    /// - Parameters:
-//    ///   - email: User's email address.
-//    ///   - password: User's password.
-//    func emailPasswordAuth(email: String, password: String, createUser: Bool = false) async throws -> AuthDataResult? {
+    
+    
+    
+    
+//    
+//    func sendSignInLink(to email: String) async throws {
+//        let actionCodeSettings = ActionCodeSettings()
+//        actionCodeSettings.url = URL(string: "stampsapp://lumatapps.com/signin") // Update with your deep link URL
+//        actionCodeSettings.handleCodeInApp = true
+//        actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
+//        
 //        do {
-//            var authResult: AuthDataResult?
-//            
-//            if createUser {
-//                authResult = try await Auth.auth().signIn(withEmail: email, password: password)
-//            } else {
-//                authResult = try await Auth.auth().createUser(withEmail: email, password: password)
-//            }
-//            
-//            if let user = authResult?.user {
-//                updateState(user: user)
-//            }
-//            
-//            return authResult
+//            try await Auth.auth().sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings)
+//            UserDefaults.standard.set(email, forKey: "Email")
+//            print("Check your email for the sign-in link")
 //        } catch {
-//            print("FirebaseAuthError: Failed to create user with email and password. \(error.localizedDescription)")
+//            print("FirebaseAuthError: sendSignInLink(to:) failed. \(error)")
 //            throw error
 //        }
 //    }
-
+//
+//    func signInWithEmailLink(email: String, link: String) async throws {
+//        do {
+//            let result = try await Auth.auth().signIn(withEmail: email, link: link)
+//            let credential = EmailAuthProvider.credential(withEmail: email, link: link)
+//            try await authLink(credentials: credential)
+//            updateState(user: result.user)
+//        } catch {
+//            print("FirebaseAuthError: signInWithEmailLink(email:link:) failed. \(error)")
+//            throw error
+//        }
+//    }
+    
+    
+    
+    
+    
     
     /// Authenticate with Firebase using Google `idToken`, and `accessToken` from given `GIDGoogleUser`.
     /// - Parameter user: Signed-in Google user.

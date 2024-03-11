@@ -36,7 +36,5 @@ struct StampsAppView: View {
     StampsAppView()
         .environment(AuthManager())
         .environment(LocationManager())
-        .environment(MapViewModel())
-        .environment(PassportViewModel())
-        .environment(ProfileViewModel())
+        .environment(StampsAppViewModel())
 }

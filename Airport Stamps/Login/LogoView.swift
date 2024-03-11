@@ -10,21 +10,11 @@ import SwiftUI
 struct LogoView: View {
     var body: some View {
         VStack(spacing: 24) {
-            Image("va-logo")
+            Image(.doavLogo)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 250)
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .strokeBorder(lineWidth: 10)
-                        .foregroundStyle(.accent)
-                    )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(style: StrokeStyle(lineWidth: 15, dash: [15]))
-                        .foregroundStyle(.accent)
-                )
+                .frame(width: 200)
+   
             
             Text("AMBASSADORS PROGRAM")
                 .foregroundStyle(Color.primary)

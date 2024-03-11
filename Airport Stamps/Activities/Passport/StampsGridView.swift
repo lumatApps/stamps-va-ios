@@ -9,9 +9,7 @@ import SwiftUI
 
 struct StampsGridView: View {
     @Environment(\.horizontalSizeClass) var sizeClass
-    @Environment(ProfileViewModel.self) var profileViewModel
-    @Environment(MapViewModel.self) var mapViewModel
-    var collectedStamps: [Stamp]
+    @Environment(StampsAppViewModel.self) var stampsAppViewModel
 
     var columns: [GridItem] {
         switch sizeClass {
@@ -25,46 +23,48 @@ struct StampsGridView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(collectedStamps) { stamp in
-                    Button {
-                        // no action yet
-                    } label: {
-                        let rotation = Double.random(in: -10..<10)
-                        
-                        AsyncImage(url: URL(string: "https://storage.googleapis.com/stamps-va/stamp-images/\(stamp.id).png")) { phase in
-                            if let image = phase.image {
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .overlay(alignment: .bottom) {
-                                        Text(stamp.id)
-                                            .font(.title3)
-                                            .fontWeight(.heavy)
-                                            .foregroundStyle(.red)
-                                            .background(.ultraThinMaterial)
-                                            .clipShape(RoundedRectangle(cornerRadius: 5, style: .circular))
-                                    }
-                            } else if phase.error != nil {
-                                Image(systemName: stamp.icon)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundStyle(.secondary)
-                                    .overlay(alignment: .bottom) {
-                                        Text(stamp.id)
-                                            .font(.title3)
-                                            .fontWeight(.heavy)
-                                            .foregroundStyle(.red)
-                                            .background(.ultraThinMaterial)
-                                            .clipShape(RoundedRectangle(cornerRadius: 5, style: .circular))
-                                    }
-                            } else {
-                                ProgressView()
+                ForEach(stampsAppViewModel.collectedStamps) { stampReference in
+                    if let stamp = stampsAppViewModel.collectedStampsDictionary[stampReference.id] {
+                        Button {
+                            // no action yet
+                        } label: {
+                            let rotation = Double.random(in: -10..<10)
+                            
+                            AsyncImage(url: URL(string: "https://storage.googleapis.com/stamps-va/stamp-images/\(stamp.id).png")) { phase in
+                                if let image = phase.image {
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .overlay(alignment: .bottom) {
+                                            Text(stamp.id)
+                                                .font(.title3)
+                                                .fontWeight(.heavy)
+                                                .foregroundStyle(.red)
+                                                .background(.ultraThinMaterial)
+                                                .clipShape(RoundedRectangle(cornerRadius: 5, style: .circular))
+                                        }
+                                } else if phase.error != nil {
+                                    Image(systemName: stamp.icon)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundStyle(.secondary)
+                                        .overlay(alignment: .bottom) {
+                                            Text(stamp.id)
+                                                .font(.title3)
+                                                .fontWeight(.heavy)
+                                                .foregroundStyle(.red)
+                                                .background(.ultraThinMaterial)
+                                                .clipShape(RoundedRectangle(cornerRadius: 5, style: .circular))
+                                        }
+                                } else {
+                                    ProgressView()
+                                }
                             }
+                            .rotationEffect(.degrees(rotation))
+                            .padding()
                         }
-                        .rotationEffect(.degrees(rotation))
-                        .padding()
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }
@@ -72,8 +72,8 @@ struct StampsGridView: View {
     }
 }
 
-//#Preview {
-//    StampsGridView()
-//        .environment(ProfileViewModel())
-//        .environment(MapViewModel())
-//}
+
+#Preview {
+    StampsGridView()
+        .environment(StampsAppViewModel())
+}

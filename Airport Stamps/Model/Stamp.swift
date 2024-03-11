@@ -8,6 +8,7 @@
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import CoreLocation
+import SwiftUI
 
 struct Stamp: Identifiable, Decodable {
     var id: String
@@ -18,7 +19,7 @@ struct Stamp: Identifiable, Decodable {
     var type: StampType
     var icon: String
     var notes: String
-    var secondaryIdentifier: String
+    var secondaryIdentifier: RegionType
     var alert: String
     var date: Date? // Optional date property
 
@@ -36,7 +37,7 @@ struct Stamp: Identifiable, Decodable {
         case date
     }
 
-    init(id: String, name: String, latitude: Double, longitude: Double, elevation: Double, length: Double, type: StampType, icon: String, notes: String, secondaryIdentifier: String, alert: String, date: Date? = Date()) {
+    init(id: String, name: String, latitude: Double, longitude: Double, elevation: Double, length: Double, type: StampType, icon: String, notes: String, secondaryIdentifier: RegionType, alert: String, date: Date? = Date()) {
         self.id = id
         self.name = name
         self.coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -63,7 +64,7 @@ struct Stamp: Identifiable, Decodable {
         type = try container.decode(StampType.self, forKey: .type)
         icon = try container.decode(String.self, forKey: .icon)
         notes = try container.decode(String.self, forKey: .notes)
-        secondaryIdentifier = try container.decode(String.self, forKey: .secondaryIdentifier)
+        secondaryIdentifier = try container.decode(RegionType.self, forKey: .secondaryIdentifier)
         alert = try container.decode(String.self, forKey: .alert)
 
         // Handle optional 'date' decoding with a default to current date
@@ -80,7 +81,7 @@ struct Stamp: Identifiable, Decodable {
         type: .airport,
         icon: "airplane",
         notes: "Region 1",
-        secondaryIdentifier: "1",
+        secondaryIdentifier: .region1,
         alert: "Weather advisory",
         date: nil // Example with no specific date, will default to current date
     )
@@ -124,3 +125,53 @@ extension StampType {
 }
 
 
+enum StampVisibility: String, CaseIterable {
+    case all = "All Stamps"
+    case collected = "Collected Stamps"
+    case uncollected = "Uncollected Stamps"
+    case airports = "Airports"
+    case museums = "Museums"
+    case seminars = "Safety Seminars"
+    case flyIns = "Fly-Ins"
+}
+
+extension StampVisibility {
+    var icon: (systemName: String, color: Color) {
+        switch self {
+        case .all:
+            return ("mappin", Color.primary)
+        case .collected:
+            return ("mappin", .green)
+        case .uncollected:
+            return ("mappin", .red)
+        case .airports:
+            return ("airplane", .secondary)
+        case .museums:
+            return ("building.columns", .secondary)
+        case .seminars:
+            return ("book.closed", .secondary)
+        case .flyIns:
+            return ("airplane.departure", .secondary)
+        }
+    }
+}
+
+
+enum RegionType: String, Codable, CaseIterable {
+    case region1 = "1"
+    case region2 = "2"
+    case region3 = "3"
+    case region4 = "4"
+    case region5 = "5"
+    case region6 = "6"
+    case region7 = "7"
+    case unknown // Default case for unmatched regions
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let decodedString = try container.decode(String.self)
+        
+        // Attempt to initialize using a match, defaulting to 'unknown' for unmatched cases
+        self = RegionType.allCases.first(where: { $0.rawValue == decodedString }) ?? .unknown
+    }
+}

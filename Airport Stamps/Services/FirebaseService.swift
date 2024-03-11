@@ -15,7 +15,6 @@ import FirebaseDatabase
 enum FirebaseService {
     static let firestoreDatabase = Firestore.firestore()
     
-    
     static func addOrUpdateDocument<T: Encodable>(to collection: String, id: String, object: T, merge: Bool = true) async throws {
         do {
             // Encode the object of type T

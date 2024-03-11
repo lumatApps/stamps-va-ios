@@ -13,7 +13,7 @@ struct LoginView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     @Environment(AuthManager.self) var authManager
-
+    
     var body: some View {
         VStack(spacing: 16) {
             Spacer()
@@ -52,7 +52,7 @@ struct LoginView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.accentColor.opacity(0.5))
+        .background(Color.accentColor.opacity(0.25))
     }
 
     /// Sign in with `Google`, and authenticate with `Firebase`.

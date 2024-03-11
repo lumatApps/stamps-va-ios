@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>909232899319-d5ajn2r101tqvsob4tth6vctfna41io8.apps.googleusercontent.com</string>
+	<string>909232899319-knk1o0cgbedkl3gdpc84kh4h6p3n7orf.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.909232899319-d5ajn2r101tqvsob4tth6vctfna41io8</string>
+	<string>com.googleusercontent.apps.909232899319-knk1o0cgbedkl3gdpc84kh4h6p3n7orf</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCbFO4pn5p0fBhNWv4FcO3H0zerM6q6K4c</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.lumatapps.airport-stamps-va</string>
+	<string>com.lumatapps.stamps-va</string>
 	<key>PROJECT_ID</key>
 	<string>airport-stamps-va</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:909232899319:ios:bce7740969b0f16bbffff2</string>
+	<string>1:909232899319:ios:a181cbc7b31933d0bffff2</string>
 </dict>
 </plist>

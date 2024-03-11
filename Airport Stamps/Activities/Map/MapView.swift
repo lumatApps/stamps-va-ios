@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 import MapKit
 
 struct MapView: View {
@@ -15,8 +14,7 @@ struct MapView: View {
     // Services and ViewModels
     @Environment(AuthManager.self) var authManager
     @Environment(LocationManager.self) var locationManager
-    @Environment(MapViewModel.self) var mapViewModel
-    @Environment(ProfileViewModel.self) var profileViewModel
+    @Environment(StampsAppViewModel.self) var stampsAppViewModel
     
     @State private var selectedItem: Stamp.ID?
     @State private var isShowingSheet = false
@@ -34,40 +32,20 @@ struct MapView: View {
     @Namespace var mapScope
     
     var selectedStamp: Stamp? {
-        mapViewModel.stamps.first(where: { $0.id == selectedItem })
+        stampsAppViewModel.stamps.first(where: { $0.id == selectedItem })
     }
     
-    var filteredStamps: [Stamp] {
-        switch mapViewModel.stampVisibility {
-        case .all:
-            return mapViewModel.stamps
-        case .collected:
-            return mapViewModel.stamps.filter { stamp in
-                profileViewModel.stamps.contains(where: { profileStamp in
-                    profileStamp.id == stamp.id
-                })
-            }
-        case .uncollected:
-            return mapViewModel.stamps.filter { stamp in
-                !profileViewModel.stamps.contains(where: { profileStamp in
-                    profileStamp.id == stamp.id
-                })
-            }
-        }
-    }
-
     var body: some View {
-        @Bindable var mapViewModel = mapViewModel
-        @Bindable var profileViewModel = profileViewModel
+        @Bindable var stampsAppViewModel = stampsAppViewModel
         
         NavigationStack {
             ZStack {
-                Map(position: $mapViewModel.position, selection: $selectedItem, scope: mapScope) {
+                Map(position: $stampsAppViewModel.position, selection: $selectedItem, scope: mapScope) {
                     UserAnnotation()
                     
-                    ForEach(filteredStamps) { stamp in
+                    ForEach(stampsAppViewModel.filteredStamps) { stamp in
                         Marker(stamp.name, systemImage: stamp.icon, coordinate: stamp.coordinates)
-                            .tint($profileViewModel.stamps.contains { $0.id == stamp.id } ? .green : .red)
+                            .tint(stampsAppViewModel.checkCollected(stamp: stamp) ? .green : .red)
                     }
                 }
                 
@@ -83,7 +61,7 @@ struct MapView: View {
             .mapStyle(.hybrid(elevation: .realistic))
             .onChange(of: selectedItem) {
                 if let item = selectedStamp {
-                    mapViewModel.goTo(item: MKMapItem(latitude: item.coordinates.latitude, longitude: item.coordinates.longitude))
+                    stampsAppViewModel.goTo(item: MKMapItem(latitude: item.coordinates.latitude, longitude: item.coordinates.longitude))
                     isShowingSheet.toggle()
                 }
             }
@@ -139,8 +117,8 @@ struct MapView: View {
     
     // Returns the building results when a user enters text in the search field
     var searchResults: [Stamp] {
-        mapViewModel.stamps.filter {
-            $0.name.lowercased().contains(searchText.lowercased()) || 
+        stampsAppViewModel.stamps.filter {
+            $0.name.lowercased().contains(searchText.lowercased()) ||
             $0.id.lowercased().contains(searchText.lowercased())
         }
     }
@@ -152,56 +130,56 @@ struct MapView: View {
         }
 
         if let item = searchResults.first {
-            mapViewModel.goTo(item: MKMapItem(latitude: item.coordinates.latitude, longitude: item.coordinates.longitude))
+            stampsAppViewModel.goTo(item: MKMapItem(latitude: item.coordinates.latitude, longitude: item.coordinates.longitude))
         }
     }
 
     func verifyStamp(stamp: Stamp) {
-//        let added = profileViewModel.addStamp(id: stamp.id)
-//
-//        if added {
-//            Task {
-//                await profileViewModel.save(authManager: authManager)
-//                alertTitle = "You Collected a Stamp!"
-//                alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
-//                showingAlert = true
-//            }
-//        } else {
-//            alertTitle = "Stamp Not Saved"
-//            alertMessage = "You have already collected this stamp!"
-//            showingAlert = true
-//        }
-        
-        if !locationManager.isAuthorized {
-            showingAuthAlert.toggle()
-        } else {
-            let verified = mapViewModel.verifyUserLocation(locationManager: locationManager, stamp: stamp)
-            
-            if verified {
-                let added = profileViewModel.addStamp(id: stamp.id)
-                
-                if added {
-                    Task {
-                        await profileViewModel.save(authManager: authManager)
-                    }
-                    alertTitle = "You Collected a Stamp!"
-                    alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
-                    showingAlert = true
-                } else {
-                    alertTitle = "Stamp Not Saved"
-                    alertMessage = "You have already collected this stamp!"
-                    showingAlert = true
-                }
-            } else {
-                alertTitle = "Stamp Not Saved"
-                alertMessage = "We could not verify your location. Please make sure you a nearby a location shown on the map and check you location permissions in settings."
+        let added = stampsAppViewModel.addStamp(id: stamp.id)
+
+        if added {
+            Task {
+                await stampsAppViewModel.save(authManager: authManager)
+                alertTitle = "You Collected a Stamp!"
+                alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
                 showingAlert = true
             }
+        } else {
+            alertTitle = "Stamp Not Saved"
+            alertMessage = "You have already collected this stamp!"
+            showingAlert = true
         }
+        
+//        if !locationManager.isAuthorized {
+//            showingAuthAlert.toggle()
+//        } else {
+//            let verified = stampsAppViewModel.verifyUserLocation(locationManager: locationManager, stamp: stamp)
+//            
+//            if verified {
+//                let added = stampsAppViewModel.addStamp(id: stamp.id)
+//                
+//                if added {
+//                    Task {
+//                        await stampsAppViewModel.save(authManager: authManager)
+//                    }
+//                    alertTitle = "You Collected a Stamp!"
+//                    alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
+//                    showingAlert = true
+//                } else {
+//                    alertTitle = "Stamp Not Saved"
+//                    alertMessage = "You have already collected this stamp!"
+//                    showingAlert = true
+//                }
+//            } else {
+//                alertTitle = "Stamp Not Saved"
+//                alertMessage = "We could not verify your location. Please make sure you a nearby a location shown on the map and check you location permissions in settings."
+//                showingAlert = true
+//            }
+//        }
     }
     
     func findNearbyStamp() {
-        let stamp = mapViewModel.findNearbyStamp(locationManager: locationManager)
+        let stamp = stampsAppViewModel.findNearbyStamp(locationManager: locationManager)
         
         if let stamp = stamp {
             selectedItem = stamp.id
@@ -218,6 +196,5 @@ struct MapView: View {
     MapView()
         .environment(AuthManager())
         .environment(LocationManager())
-        .environment(MapViewModel())
-        .environment(ProfileViewModel())
+        .environment(StampsAppViewModel())
 }
