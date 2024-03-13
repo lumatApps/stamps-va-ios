@@ -24,10 +24,10 @@ struct MapView: View {
     @State private var dismissSearch = false
     
     // Alert
-    @State private var showingAuthAlert = false
-    @State private var showingAlert = false
-    @State private var alertTitle = ""
-    @State private var alertMessage = ""
+    @State var showingAlert = false
+    @State var showingAuthAlert = false
+    @State var alertTitle = ""
+    @State var alertMessage = ""
     
     @Namespace var mapScope
     
@@ -54,11 +54,11 @@ struct MapView: View {
                 MapSearchView(dismiss: $dismissSearch)
                 
                 if devMode {
-                    Text("Dev Mode (location verification off)")
+                    Text("Dev Mode (location/date verification off)")
                         .font(.caption)
                         .foregroundStyle(.red)
                         .padding(10)
-                        .background(.thinMaterial)
+                        .background(.thickMaterial)
                         .clipShape(Capsule())
                         .padding(.vertical)
                 }
@@ -106,11 +106,11 @@ struct MapView: View {
                 Text(alertMessage)
             }
             // User Location Permissions Alert
-            .alert("Authorization Needed", isPresented: $showingAuthAlert) {
+            .alert(alertTitle, isPresented: $showingAuthAlert) {
                 Button("Cancel", role: .destructive) { locationManager.requestPermission() }
                 Button("Request", role: .cancel) { }
             } message: {
-                Text("User location is required to verify and approve stamp.")
+                Text(alertMessage)
             }
             .onAppear {
                 if locationManager.authorizationStatus == .notDetermined {
@@ -149,57 +149,35 @@ struct MapView: View {
     func verifyStamp(stamp: Stamp) {
         if devMode {
             if authManager.authState == .signedIn {
-                let added = stampsAppViewModel.addStamp(id: stamp.id)
-                
-                if added {
-                    Task {
-                        await stampsAppViewModel.save(authManager: authManager)
-                        alertTitle = "You Collected a Stamp!"
-                        alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
-                        showingAlert = true
-                    }
-                } else {
-                    alertTitle = "Stamp Not Saved"
-                    alertMessage = "You have already collected this stamp!"
-                    showingAlert = true
-                }
+                addStamp(stamp: stamp)
             } else {
-                anonymousUserAlert()
+                showAlert(for: .signInRequired)
             }
         } else {
             if authManager.authState == .signedIn {
                 if !locationManager.isAuthorized {
-                    showingAuthAlert.toggle()
+                    showAlert(for: .userLocationRequired)
                 } else {
-                    let verified = stampsAppViewModel.verifyUserLocation(locationManager: locationManager, stamp: stamp)
+                    let verifiedLocation = stampsAppViewModel.verifyUserLocation(locationManager: locationManager, stamp: stamp)
                     
-                    if verified {
-                        let added = stampsAppViewModel.addStamp(id: stamp.id)
+                    if verifiedLocation {
+                        let isDateValid = stampsAppViewModel.verifyStampDate(stamp: stamp)
                         
-                        if added {
-                            Task {
-                                await stampsAppViewModel.save(authManager: authManager)
-                            }
-                            alertTitle = "You Collected a Stamp!"
-                            alertMessage = "Thanks for visiting \(stamp.name). Go check out your new stamp in the next tab."
-                            showingAlert = true
+                        if isDateValid != false {
+                            addStamp(stamp: stamp)
                         } else {
-                            alertTitle = "Stamp Not Saved"
-                            alertMessage = "You have already collected this stamp!"
-                            showingAlert = true
+                            showAlert(for: .invalidDate)
                         }
                     } else {
-                        alertTitle = "Stamp Not Saved"
-                        alertMessage = "You are not within the boundary for this stamp locatio. Please make sure you are nearby the marker shown on the map and check you location permissions in settings."
-                        showingAlert = true
+                        showAlert(for: .invalidLocation)
                     }
                 }
             } else {
-                anonymousUserAlert()
+                showAlert(for: .signInRequired)
             }
         }
     }
-    
+
     func findNearbyStamp() {
         if authManager.authState == .signedIn {
             let stamp = stampsAppViewModel.findNearbyStamp(locationManager: locationManager)
@@ -207,19 +185,25 @@ struct MapView: View {
             if let stamp = stamp {
                 selectedItem = stamp.id
             } else {
-                alertTitle = "Stamp Not Found"
-                alertMessage = "It looks you are not located within a stamp locations boundary."
-                showingAlert = true
+                showAlert(for: .stampNotLocated)
             }
         } else {
-            anonymousUserAlert()
+            showAlert(for: .signInRequired)
         }
     }
     
-    func anonymousUserAlert() {
-        alertTitle = "Sign in required"
-        alertMessage = "Please sign in before collecting stamps."
-        showingAlert = true
+    func addStamp(stamp: Stamp) {
+        let added = stampsAppViewModel.addStamp(id: stamp.id)
+        
+        if added {
+            Task {
+                await stampsAppViewModel.save(authManager: authManager)
+            }
+            
+            showAlert(for: .stampSavedSuccessfully(stampName: stamp.name))
+        } else {
+            showAlert(for: .stampAlreadyCollected)
+        }
     }
 }
 

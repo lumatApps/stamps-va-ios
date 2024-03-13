@@ -43,10 +43,12 @@
 		A01A9CEE2B913E0B00B325F7 /* GoogleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CED2B913E0B00B325F7 /* GoogleSignInManager.swift */; };
 		A01A9CF42B91416100B325F7 /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A9CF32B91416100B325F7 /* AppleSignInManager.swift */; };
 		A01FB58B2B92CEBD00873DE0 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = A01FB58A2B92CEBD00873DE0 /* CodeScanner */; };
+		A05CA6652BA00DF2001B2911 /* AmbassadorLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05CA6642BA00DF2001B2911 /* AmbassadorLevel.swift */; };
+		A05CA66B2BA1199F001B2911 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05CA66A2BA1199F001B2911 /* AlertType.swift */; };
 		A06A86232B99E8E900E61F64 /* MKMapItem-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A86222B99E8E900E61F64 /* MKMapItem-Extension.swift */; };
 		A06A86252B99E91900E61F64 /* MapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A86242B99E91900E61F64 /* MapFilterView.swift */; };
 		A06A862B2B9A52AE00E61F64 /* MapSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A862A2B9A52AE00E61F64 /* MapSheetView.swift */; };
-		A06E09C42B9C2FEA00343E2D /* RewardLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E09C32B9C2FEA00343E2D /* RewardLevel.swift */; };
+		A06E09C42B9C2FEA00343E2D /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E09C32B9C2FEA00343E2D /* Reward.swift */; };
 		A06E09C62B9C332500343E2D /* RewardProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E09C52B9C332500343E2D /* RewardProgressView.swift */; };
 		A06E09C82B9C34A500343E2D /* RewardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E09C72B9C34A500343E2D /* RewardDetailView.swift */; };
 		A09A3CDA2B9181A1004FE834 /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CD92B9181A1004FE834 /* Stamp.swift */; };
@@ -106,10 +108,12 @@
 		A01A9CF12B913F4F00B325F7 /* Airport-Stamps-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Airport-Stamps-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A01A9CF22B91412300B325F7 /* Airport Stamps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Airport Stamps.entitlements"; sourceTree = "<group>"; };
 		A01A9CF32B91416100B325F7 /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
+		A05CA6642BA00DF2001B2911 /* AmbassadorLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbassadorLevel.swift; sourceTree = "<group>"; };
+		A05CA66A2BA1199F001B2911 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		A06A86222B99E8E900E61F64 /* MKMapItem-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapItem-Extension.swift"; sourceTree = "<group>"; };
 		A06A86242B99E91900E61F64 /* MapFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFilterView.swift; sourceTree = "<group>"; };
 		A06A862A2B9A52AE00E61F64 /* MapSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSheetView.swift; sourceTree = "<group>"; };
-		A06E09C32B9C2FEA00343E2D /* RewardLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardLevel.swift; sourceTree = "<group>"; };
+		A06E09C32B9C2FEA00343E2D /* Reward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
 		A06E09C52B9C332500343E2D /* RewardProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardProgressView.swift; sourceTree = "<group>"; };
 		A06E09C72B9C34A500343E2D /* RewardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailView.swift; sourceTree = "<group>"; };
 		A09A3CD92B9181A1004FE834 /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
@@ -244,8 +248,8 @@
 			children = (
 				A00FEEE32B8F7F2300DFC61D /* PassportView.swift */,
 				A06E09C52B9C332500343E2D /* RewardProgressView.swift */,
-				A0C259E72B9AC59F002282D5 /* StampsGridView.swift */,
 				A06E09C72B9C34A500343E2D /* RewardDetailView.swift */,
+				A0C259E72B9AC59F002282D5 /* StampsGridView.swift */,
 				A06E09C22B9C2FD700343E2D /* Model */,
 			);
 			path = Passport;
@@ -290,6 +294,7 @@
 				A00FEEE12B8F7E2400DFC61D /* AppConstants.swift */,
 				A09A3CD92B9181A1004FE834 /* Stamp.swift */,
 				A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */,
+				A05CA66A2BA1199F001B2911 /* AlertType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,7 +310,8 @@
 		A06E09C22B9C2FD700343E2D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A06E09C32B9C2FEA00343E2D /* RewardLevel.swift */,
+				A06E09C32B9C2FEA00343E2D /* Reward.swift */,
+				A05CA6642BA00DF2001B2911 /* AmbassadorLevel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -476,6 +482,7 @@
 				A0C259E82B9AC59F002282D5 /* StampsGridView.swift in Sources */,
 				A0F98B972B9E902C0064964F /* EmailSignInView.swift in Sources */,
 				A01A9CE72B913CF200B325F7 /* AuthManager.swift in Sources */,
+				A05CA6652BA00DF2001B2911 /* AmbassadorLevel.swift in Sources */,
 				A00FEEB52B8F7D3100DFC61D /* ContentView.swift in Sources */,
 				A06E09C82B9C34A500343E2D /* RewardDetailView.swift in Sources */,
 				A00FEEE02B8F7DD100DFC61D /* MapView.swift in Sources */,
@@ -497,11 +504,12 @@
 				A06A86232B99E8E900E61F64 /* MKMapItem-Extension.swift in Sources */,
 				A06A862B2B9A52AE00E61F64 /* MapSheetView.swift in Sources */,
 				A00FEF062B8FA71E00DFC61D /* MapPanelView.swift in Sources */,
-				A06E09C42B9C2FEA00343E2D /* RewardLevel.swift in Sources */,
+				A06E09C42B9C2FEA00343E2D /* Reward.swift in Sources */,
 				A00FEEE22B8F7E2400DFC61D /* AppConstants.swift in Sources */,
 				A00FEEEF2B8F8B6C00DFC61D /* MapSearchView.swift in Sources */,
 				A00FEF082B8FA7AC00DFC61D /* MapButtonView.swift in Sources */,
 				A09A3CE02B9186A0004FE834 /* CollectedStamp.swift in Sources */,
+				A05CA66B2BA1199F001B2911 /* AlertType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

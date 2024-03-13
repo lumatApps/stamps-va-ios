@@ -16,7 +16,6 @@ struct ContentView: View {
             if authManager.authState != .signedOut {
                 StampsAppView()
                     .onAppear {
-                        print("Content View On Appear")
                         Task {
                             await stampsAppViewModel.attachListeners(authManager: authManager)
                         }

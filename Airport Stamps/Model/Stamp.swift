@@ -21,7 +21,23 @@ struct Stamp: Identifiable, Decodable {
     var notes: String
     var secondaryIdentifier: RegionType
     var alert: String
-    var date: Date? // Optional date property
+    var startDate: Date?
+    var endDate: Date?
+    
+    var formattedDate: String? {
+        guard let start = startDate, let end = endDate else {
+            return nil
+        }
+        
+        let dateFormatter = DateFormatter()
+        // Include both date and time in the output
+        dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
+        
+        let formattedStart = dateFormatter.string(from: start)
+        let formattedEnd = dateFormatter.string(from: end)
+        
+        return "\(formattedStart) - \(formattedEnd)"
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,10 +50,11 @@ struct Stamp: Identifiable, Decodable {
         case notes
         case secondaryIdentifier
         case alert
-        case date
+        case startDate
+        case endDate
     }
 
-    init(id: String, name: String, latitude: Double, longitude: Double, elevation: Double, length: Double, type: StampType, icon: String, notes: String, secondaryIdentifier: RegionType, alert: String, date: Date? = Date()) {
+    init(id: String, name: String, latitude: Double, longitude: Double, elevation: Double, length: Double, type: StampType, icon: String, notes: String, secondaryIdentifier: RegionType, alert: String, startDate: Date? = nil, endDate: Date? = nil) {
         self.id = id
         self.name = name
         self.coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -48,7 +65,8 @@ struct Stamp: Identifiable, Decodable {
         self.notes = notes
         self.secondaryIdentifier = secondaryIdentifier
         self.alert = alert
-        self.date = date // Initialize with current date as default
+        self.startDate = startDate
+        self.endDate = endDate
     }
 
     init(from decoder: Decoder) throws {
@@ -66,9 +84,8 @@ struct Stamp: Identifiable, Decodable {
         notes = try container.decode(String.self, forKey: .notes)
         secondaryIdentifier = try container.decode(RegionType.self, forKey: .secondaryIdentifier)
         alert = try container.decode(String.self, forKey: .alert)
-
-        // Handle optional 'date' decoding with a default to current date
-        date = try container.decodeIfPresent(Date.self, forKey: .date) ?? Date()
+        startDate = try container.decodeIfPresent(Date.self, forKey: .startDate)
+        endDate = try container.decodeIfPresent(Date.self, forKey: .endDate)
     }
 
     static let example = Stamp(
@@ -83,7 +100,8 @@ struct Stamp: Identifiable, Decodable {
         notes: "Region 1",
         secondaryIdentifier: .region1,
         alert: "Weather advisory",
-        date: nil // Example with no specific date, will default to current date
+        startDate: nil,
+        endDate: nil
     )
 }
 
@@ -99,7 +117,7 @@ enum StampType: String, Codable, CaseIterable {
         let decodedString = try container.decode(String.self).lowercased() // Convert to lowercased for comparison
         
         // Attempt to initialize using a case-insensitive match
-        if let value = StampType.allCases.first(where: { $0.rawValue.lowercased() == decodedString }) {
+        if let value = StampType.allCases.first(where: { $0.key.lowercased() == decodedString }) {
             self = value
         } else {
             self = .test
@@ -173,5 +191,26 @@ enum RegionType: String, Codable, CaseIterable {
         
         // Attempt to initialize using a match, defaulting to 'unknown' for unmatched cases
         self = RegionType.allCases.first(where: { $0.rawValue == decodedString }) ?? .unknown
+    }
+    
+    var detail: (region: String, color: Color, value: Int) {
+        switch self {
+        case .region1:
+            return ("1", .blue, 1)
+        case .region2:
+            return ("2", .green, 2)
+        case .region3:
+            return ("3", .red, 3)
+        case .region4:
+            return ("4", .orange, 4)
+        case .region5:
+            return ("5", .purple, 5)
+        case .region6:
+            return ("6", .yellow, 6)
+        case .region7:
+            return ("7", .pink, 7)
+        case .unknown:
+            return ("Unknown", .gray, 0)
+        }
     }
 }
