@@ -33,7 +33,7 @@ struct RewardProgressView: View {
                         }
                     
                     Picker(selection: $stampsAppViewModel.selectedRewardLevel, label:
-                            Text(stampsAppViewModel.selectedRewardLevel.name)
+                        Text(stampsAppViewModel.selectedRewardLevel.name)
                     ) {
                         ForEach(stampsAppViewModel.rewardLevels, id: \.self) { rewardLevel in
                             Text(rewardLevel.name)

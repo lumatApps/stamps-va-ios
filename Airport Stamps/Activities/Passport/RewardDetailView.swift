@@ -14,11 +14,15 @@ struct RewardDetailPagesView: View {
         TabView {
             ForEach(stampsAppViewModel.rewardLevels, id: \.name) { level in
                 RewardDetailView(rewardLevel: level)
+                    .tabItem {
+                        Label(level.name, systemImage: "trophy.fill")
+                    }
+                    .tag(level)
             }
         }
+        .background(.thinMaterial)
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
-        .background(Color.accentColor.opacity(0.25))
     }
 }
 
@@ -31,9 +35,6 @@ struct RewardDetailView: View {
         stampsAppViewModel.collectedStampTypeCount.airport >= rewardLevel.airports
     }
     
-    var status: Bool {
-        stampsAppViewModel.ambassadorLevel.status >= rewardLevel.ambassadorLevel
-    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -50,12 +51,6 @@ struct RewardDetailView: View {
         HStack {
             Image(systemName: "trophy.fill")
                 .foregroundStyle(rewardLevel.ambassadorLevel.color)
-                .overlay(alignment: .leading) {
-                    Image(systemName: status ? "checkmark.seal.fill" : "xmark.seal.fill")
-                        .font(.caption)
-                        .foregroundStyle(status ? .green : .red)
-                        .offset(x: -10, y: -10)
-                }
             
             Text("\(rewardLevel.name)")
         }
@@ -67,27 +62,27 @@ struct RewardDetailView: View {
         VStack(alignment: .leading, spacing: 8) {
             criteriaView(
                 airports ? "checkmark.seal.fill" : "xmark.seal.fill",
-                color: airports ? .green : .red,
+                color: airports ? .green : .secondary,
                 text: rewardLevel.airportsDescription)
             
             criteriaView(
                 stampsAppViewModel.ambassadorLevel.museums ?  "checkmark.seal.fill" : "xmark.seal.fill", 
-                color: stampsAppViewModel.ambassadorLevel.museums ? .green : .red,
+                color: stampsAppViewModel.ambassadorLevel.museums ? .green : .secondary,
                 text: "Visit \(rewardLevel.museums) aviation museums in Virginia.")
             
             criteriaView(
                 stampsAppViewModel.ambassadorLevel.seminars ?  "checkmark.seal.fill" : "xmark.seal.fill",
-                color: stampsAppViewModel.ambassadorLevel.seminars ? .green : .red,
+                color: stampsAppViewModel.ambassadorLevel.seminars ? .green : .secondary,
                 text: "Attend \(rewardLevel.seminars) safety seminar in Virginia.")
             
             criteriaView(
                 stampsAppViewModel.ambassadorLevel.flyIns ?  "checkmark.seal.fill" : "xmark.seal.fill",
-                color: stampsAppViewModel.ambassadorLevel.flyIns ? .green : .red,
+                color: stampsAppViewModel.ambassadorLevel.flyIns ? .green : .secondary,
                 text: "Attend \(rewardLevel.flyIns) designated fly-in.")
             
             criteriaView(
                 stampsAppViewModel.ambassadorLevel.regions ?  "checkmark.seal.fill" : "xmark.seal.fill",
-                color: stampsAppViewModel.ambassadorLevel.regions ? .green : .red,
+                color: stampsAppViewModel.ambassadorLevel.regions ? .green : .secondary,
                 text: "At least one airport from each of the 7 regions.")
         }
     }

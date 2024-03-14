@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PassportView: View {
     static let tag = AppConstants.passport.tab
+    @Environment(StampsAppViewModel.self) var stampsAppViewModel
 
     var body: some View {
         NavigationStack {
@@ -16,8 +17,15 @@ struct PassportView: View {
                 RewardProgressView()
                 StampsGridView()
             }
-            .navigationTitle(AppConstants.passport.title)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(stampsAppViewModel.firstName.isEmpty ? "My Passport" : "\(stampsAppViewModel.firstName)'s Passport")
+                        .font(.custom("Bradley Hand", size: 24))
+                        .bold()
+                        .padding(5)
+                }
+            }
         }
     }
 }

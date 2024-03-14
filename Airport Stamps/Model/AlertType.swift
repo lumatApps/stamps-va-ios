@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum AlertType {
+enum AlertType: Equatable {
     case invalidDate
     case invalidLocation
     case userLocationRequired
     case stampNotLocated
     case stampAlreadyCollected
     case signInRequired
-    case stampSavedSuccessfully(stampName: String) // Added this case
+    case stampSavedSuccessfully(stampName: String)
 
     var title: String {
         switch self {
@@ -55,6 +55,8 @@ extension MapView {
     func showAlert(for type: AlertType) {
         self.alertTitle = type.title
         self.alertMessage = type.message
+        let currentId = (self.hapticFeedbackTrigger?.id ?? 0) + 1
+        self.hapticFeedbackTrigger = HapticFeedbackTrigger(type: type, id: currentId)
         
         switch type {
         case .signInRequired:
@@ -66,3 +68,8 @@ extension MapView {
     }
 }
 
+
+struct HapticFeedbackTrigger: Equatable {
+    let type: AlertType
+    let id: Int
+}

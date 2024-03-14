@@ -28,7 +28,8 @@ struct MapView: View {
     @State var showingAuthAlert = false
     @State var alertTitle = ""
     @State var alertMessage = ""
-    
+    @State var hapticFeedbackTrigger: HapticFeedbackTrigger?
+
     @Namespace var mapScope
     
     @State private var devMode = true
@@ -111,6 +112,18 @@ struct MapView: View {
                 Button("Request", role: .cancel) { }
             } message: {
                 Text(alertMessage)
+            }
+            .sensoryFeedback(trigger: hapticFeedbackTrigger) { _, newTrigger in
+                switch newTrigger?.type {
+                case .stampSavedSuccessfully:
+                    return .success
+                case .invalidDate, .invalidLocation, .stampAlreadyCollected, .stampNotLocated:
+                    return .error
+                case .signInRequired, .userLocationRequired:
+                    return .warning
+                default:
+                    return nil
+                }
             }
             .onAppear {
                 if locationManager.authorizationStatus == .notDetermined {

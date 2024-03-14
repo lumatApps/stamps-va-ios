@@ -61,29 +61,32 @@ struct ProfileView: View {
                         .disabled($isSaveDisabled.wrappedValue)
                     }
                     
-                    
-                    // PROGRAM PROGRESS
-                    Section("Program Progress") {
+                    Section("Progress") {
+                        // Content
                         NavigationLink("Past Visits") {
                             PastVisitsView()
                         }
-                        
+
                         HStack {
                             Text("Ambassador Level:")
                             
                             Spacer()
                             
-                            Text("N/A")
+                            Text(stampsAppViewModel.ambassadorLevel.status.title)
                                 .foregroundStyle(Color.secondary)
                         }
                     }
-                    
+
+
                     Section {
                         Button("Verify") {
 
                         }
                         .frame(maxWidth: .infinity)
                         //.disabled($isSaveDisabled.wrappedValue)
+                    } footer: {
+                        // Footer content
+                        Text("Once you complete a level, please click the verify button to begin the verification process and claim your prize!")
                     }
                 }
                 
