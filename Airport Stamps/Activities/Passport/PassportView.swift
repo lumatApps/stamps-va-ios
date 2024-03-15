@@ -21,9 +21,7 @@ struct PassportView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text(stampsAppViewModel.firstName.isEmpty ? "My Passport" : "\(stampsAppViewModel.firstName)'s Passport")
-                        .font(.custom("Bradley Hand", size: 24))
                         .bold()
-                        .padding(5)
                 }
             }
         }

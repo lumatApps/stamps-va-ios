@@ -51,6 +51,11 @@
 		A06E09C42B9C2FEA00343E2D /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E09C32B9C2FEA00343E2D /* Reward.swift */; };
 		A06E09C62B9C332500343E2D /* RewardProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E09C52B9C332500343E2D /* RewardProgressView.swift */; };
 		A06E09C82B9C34A500343E2D /* RewardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E09C72B9C34A500343E2D /* RewardDetailView.swift */; };
+		A0893CCB2BA3EC2C00BB6A60 /* StampImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0893CCA2BA3EC2C00BB6A60 /* StampImageView.swift */; };
+		A0893CCD2BA3F76900BB6A60 /* PersonalInformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0893CCC2BA3F76900BB6A60 /* PersonalInformationSection.swift */; };
+		A0893CCF2BA3F85500BB6A60 /* ProgressSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0893CCE2BA3F85500BB6A60 /* ProgressSectionView.swift */; };
+		A0893CD12BA3F88A00BB6A60 /* ProgramInformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0893CD02BA3F88A00BB6A60 /* ProgramInformationSection.swift */; };
+		A0893CD32BA3F9D300BB6A60 /* AuthenticationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0893CD22BA3F9D300BB6A60 /* AuthenticationSection.swift */; };
 		A09A3CDA2B9181A1004FE834 /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CD92B9181A1004FE834 /* Stamp.swift */; };
 		A09A3CDE2B918406004FE834 /* Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDD2B918406004FE834 /* Collector.swift */; };
 		A09A3CE02B9186A0004FE834 /* CollectedStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */; };
@@ -116,6 +121,11 @@
 		A06E09C32B9C2FEA00343E2D /* Reward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
 		A06E09C52B9C332500343E2D /* RewardProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardProgressView.swift; sourceTree = "<group>"; };
 		A06E09C72B9C34A500343E2D /* RewardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailView.swift; sourceTree = "<group>"; };
+		A0893CCA2BA3EC2C00BB6A60 /* StampImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampImageView.swift; sourceTree = "<group>"; };
+		A0893CCC2BA3F76900BB6A60 /* PersonalInformationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationSection.swift; sourceTree = "<group>"; };
+		A0893CCE2BA3F85500BB6A60 /* ProgressSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSectionView.swift; sourceTree = "<group>"; };
+		A0893CD02BA3F88A00BB6A60 /* ProgramInformationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramInformationSection.swift; sourceTree = "<group>"; };
+		A0893CD22BA3F9D300BB6A60 /* AuthenticationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationSection.swift; sourceTree = "<group>"; };
 		A09A3CD92B9181A1004FE834 /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
 		A09A3CDD2B918406004FE834 /* Collector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collector.swift; sourceTree = "<group>"; };
 		A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectedStamp.swift; sourceTree = "<group>"; };
@@ -250,6 +260,7 @@
 				A06E09C52B9C332500343E2D /* RewardProgressView.swift */,
 				A06E09C72B9C34A500343E2D /* RewardDetailView.swift */,
 				A0C259E72B9AC59F002282D5 /* StampsGridView.swift */,
+				A0893CCA2BA3EC2C00BB6A60 /* StampImageView.swift */,
 				A06E09C22B9C2FD700343E2D /* Model */,
 			);
 			path = Passport;
@@ -259,8 +270,12 @@
 			isa = PBXGroup;
 			children = (
 				A00FEEE52B8F7F3200DFC61D /* ProfileView.swift */,
-				A09A3CDD2B918406004FE834 /* Collector.swift */,
+				A0893CCC2BA3F76900BB6A60 /* PersonalInformationSection.swift */,
+				A0893CCE2BA3F85500BB6A60 /* ProgressSectionView.swift */,
 				A0C259EB2B9B5B36002282D5 /* PastVisitsView.swift */,
+				A0893CD02BA3F88A00BB6A60 /* ProgramInformationSection.swift */,
+				A0893CD22BA3F9D300BB6A60 /* AuthenticationSection.swift */,
+				A0893CC92BA3E2BA00BB6A60 /* Model */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -312,6 +327,14 @@
 			children = (
 				A06E09C32B9C2FEA00343E2D /* Reward.swift */,
 				A05CA6642BA00DF2001B2911 /* AmbassadorLevel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A0893CC92BA3E2BA00BB6A60 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A09A3CDD2B918406004FE834 /* Collector.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -477,8 +500,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0893CD12BA3F88A00BB6A60 /* ProgramInformationSection.swift in Sources */,
 				A0F98B952B9E8DBF0064964F /* SignInWithEmailButton.swift in Sources */,
 				A0F98B932B9DFD840064964F /* StampsAppViewModel.swift in Sources */,
+				A0893CD32BA3F9D300BB6A60 /* AuthenticationSection.swift in Sources */,
 				A0C259E82B9AC59F002282D5 /* StampsGridView.swift in Sources */,
 				A0F98B972B9E902C0064964F /* EmailSignInView.swift in Sources */,
 				A01A9CE72B913CF200B325F7 /* AuthManager.swift in Sources */,
@@ -488,6 +513,7 @@
 				A00FEEE02B8F7DD100DFC61D /* MapView.swift in Sources */,
 				A01A9CF42B91416100B325F7 /* AppleSignInManager.swift in Sources */,
 				A00FEEE42B8F7F2300DFC61D /* PassportView.swift in Sources */,
+				A0893CCD2BA3F76900BB6A60 /* PersonalInformationSection.swift in Sources */,
 				A06A86252B99E91900E61F64 /* MapFilterView.swift in Sources */,
 				A06E09C62B9C332500343E2D /* RewardProgressView.swift in Sources */,
 				A00FEEB32B8F7D3100DFC61D /* Airport_StampsApp.swift in Sources */,
@@ -509,6 +535,8 @@
 				A00FEEEF2B8F8B6C00DFC61D /* MapSearchView.swift in Sources */,
 				A00FEF082B8FA7AC00DFC61D /* MapButtonView.swift in Sources */,
 				A09A3CE02B9186A0004FE834 /* CollectedStamp.swift in Sources */,
+				A0893CCF2BA3F85500BB6A60 /* ProgressSectionView.swift in Sources */,
+				A0893CCB2BA3EC2C00BB6A60 /* StampImageView.swift in Sources */,
 				A05CA66B2BA1199F001B2911 /* AlertType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

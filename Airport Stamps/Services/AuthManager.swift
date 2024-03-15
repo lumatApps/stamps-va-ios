@@ -21,6 +21,7 @@ enum AuthState {
 
 /// An environment singleton responsible for handling
 /// Firebase authentication in app.
+@MainActor
 @Observable class AuthManager {
     /// Current Firebase auth user.
     var user: User?
@@ -109,42 +110,6 @@ enum AuthState {
             return try await authSignIn(credentials: credentials)
         }
     }
-    
-    
-    
-    
-    
-//    
-//    func sendSignInLink(to email: String) async throws {
-//        let actionCodeSettings = ActionCodeSettings()
-//        actionCodeSettings.url = URL(string: "stampsapp://lumatapps.com/signin") // Update with your deep link URL
-//        actionCodeSettings.handleCodeInApp = true
-//        actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
-//        
-//        do {
-//            try await Auth.auth().sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings)
-//            UserDefaults.standard.set(email, forKey: "Email")
-//            print("Check your email for the sign-in link")
-//        } catch {
-//            print("FirebaseAuthError: sendSignInLink(to:) failed. \(error)")
-//            throw error
-//        }
-//    }
-//
-//    func signInWithEmailLink(email: String, link: String) async throws {
-//        do {
-//            let result = try await Auth.auth().signIn(withEmail: email, link: link)
-//            let credential = EmailAuthProvider.credential(withEmail: email, link: link)
-//            try await authLink(credentials: credential)
-//            updateState(user: result.user)
-//        } catch {
-//            print("FirebaseAuthError: signInWithEmailLink(email:link:) failed. \(error)")
-//            throw error
-//        }
-//    }
-    
-    
-    
     
     
     
@@ -290,7 +255,6 @@ enum AuthState {
     /// Sign out current `Firebase` auth user
     func signOut() async throws {
         if let user = Auth.auth().currentUser {
-
             // Sign out current authenticated user in Firebase
             do {
                 firebaseProviderSignOut(user)

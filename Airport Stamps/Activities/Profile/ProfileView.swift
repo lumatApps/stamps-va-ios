@@ -16,97 +16,64 @@ struct ProfileView: View {
     @State private var isSaveDisabled = true
     
     // Alert
-    @State private var showingAlert = false
-    @State private var alertTitle = ""
-    @State private var alertMessage = ""
+    @State var showingAlert = false
+    @State var alertTitle = ""
+    @State var alertMessage = ""
+    @State var hapticFeedbackTrigger: HapticFeedbackTrigger?
     
     var body: some View {
+        @Bindable var stampsAppViewModel = stampsAppViewModel
+        
         NavigationStack {
             List {
                 if authManager.authState == .signedIn {
-                    // PERSONAL INFORMATION
-                    Section("Personal Information") {
-                        TextField("Enter First Name", text: Binding(
-                            get: { self.stampsAppViewModel.firstName },
-                            set: {
-                                if $0 != self.stampsAppViewModel.firstName {
-                                    self.stampsAppViewModel.firstName = $0
-                                    self.isSaveDisabled = false
-                                }
-                            }
-                        ))
-                        
-                        TextField("Enter Last Name", text: Binding(
-                            get: { self.stampsAppViewModel.lastName },
-                            set: {
-                                if $0 != self.stampsAppViewModel.lastName {
-                                    self.stampsAppViewModel.lastName = $0
-                                    self.isSaveDisabled = false
-                                }
-                            }
-                        ))
+                    if authManager.authState == .signedIn {
+                        PersonalInformationSection(
+                            firstName: $stampsAppViewModel.firstName,
+                            lastName: $stampsAppViewModel.lastName,
+                            isSaveDisabled: $isSaveDisabled
+                        )
                     }
                     
                     Section {
                         Button("Save") {
+                            var saveSuccessful = false
+                            
                             Task {
-                                await stampsAppViewModel.save(authManager: authManager)
+                                saveSuccessful = await stampsAppViewModel.save(authManager: authManager)
                             }
-                            alertTitle = "Profile Updated"
-                            alertMessage = "Your profile information was saved."
-                            showingAlert = true
+                            
+                            if saveSuccessful {
+                                showAlert(for: .profileSaved)
+                            } else {
+                                showAlert(for: .profileNotSaved)
+                            }
+                            
                             isSaveDisabled = true
                         }
                         .frame(maxWidth: .infinity)
                         .disabled($isSaveDisabled.wrappedValue)
                     }
-                    
-                    Section("Progress") {
-                        // Content
-                        NavigationLink("Past Visits") {
-                            PastVisitsView()
-                        }
 
-                        HStack {
-                            Text("Ambassador Level:")
-                            
-                            Spacer()
-                            
-                            Text(stampsAppViewModel.ambassadorLevel.status.title)
-                                .foregroundStyle(Color.secondary)
-                        }
-                    }
-
+                    ProgressSectionView(ambassadorLevel: stampsAppViewModel.ambassadorLevel.status)
 
                     Section {
                         Button("Verify") {
-
+                            showAlert(for: .verificationSubmitted)
                         }
                         .frame(maxWidth: .infinity)
                         //.disabled($isSaveDisabled.wrappedValue)
                     } footer: {
-                        // Footer content
                         Text("Once you complete a level, please click the verify button to begin the verification process and claim your prize!")
                     }
                 }
                 
-                // PROGRAM INFORMATION
-                Section("Program Information") {
-                    Link("Ambassadors Program", 
-                         destination: URL(string: "https://doav.virginia.gov/programs-and-services/ambassadors-program/")!
-                    )
+                ProgramInformationSection()
                     
-                    Link("Virginia Department of Aviation", 
-                         destination: URL(string: "https://doav.virginia.gov/")!
-                    )
-                    
-                    Link(destination: URL(string: "telprompt://8042363624")!) {
-                        Label("Contact Us", systemImage: "phone.fill")
-                    }
-                }
-                    
-                Section {
-                    Button(authManager.authState != .signedIn ? "Sign in" : "Sign out") {
+                AuthenticationSection(
+                    showLoginSheet: $showLoginSheet,
+                    authState: authManager.authState,
+                    signInOrOutAction: {
                         if authManager.authState != .signedIn {
                             showLoginSheet = true
                         } else {
@@ -115,17 +82,28 @@ struct ProfileView: View {
                             }
                         }
                     }
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(authManager.authState != .signedIn ? Color.accentColor : .red)
+                )
+                
+                if authManager.authState == .signedIn {
+                    Section {
+                        Button("Delete account") {
+                            Task {
+                                await stampsAppViewModel.deleteAccount(authManager: authManager)
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.red)
+                    }
                 }
             }
             .listSectionSpacing(16)
             .sheet(isPresented: $showLoginSheet) {
                 LoginView()
             }
-            // Add Alert
             .alert(alertTitle, isPresented: $showingAlert) {
                 Button("OK", role: .cancel) { }
+            } message: {
+                Text(alertMessage)
             }
             .onChange(of: authManager.authState) {
                 if authManager.authState == .signedIn {

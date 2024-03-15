@@ -159,6 +159,7 @@ struct MapView: View {
         }
     }
 
+    @MainActor
     func verifyStamp(stamp: Stamp) {
         if devMode {
             if authManager.authState == .signedIn {
@@ -191,6 +192,7 @@ struct MapView: View {
         }
     }
 
+    @MainActor
     func findNearbyStamp() {
         if authManager.authState == .signedIn {
             let stamp = stampsAppViewModel.findNearbyStamp(locationManager: locationManager)
@@ -206,14 +208,20 @@ struct MapView: View {
     }
     
     func addStamp(stamp: Stamp) {
+        let oldLevel = stampsAppViewModel.ambassadorLevel.status
         let added = stampsAppViewModel.addStamp(id: stamp.id)
+        let newLevel = stampsAppViewModel.ambassadorLevel.status
         
         if added {
             Task {
                 await stampsAppViewModel.save(authManager: authManager)
             }
             
-            showAlert(for: .stampSavedSuccessfully(stampName: stamp.name))
+            if oldLevel == newLevel {
+                showAlert(for: .stampSavedSuccessfully(stampName: stamp.name))
+            } else {
+                showAlert(for: .ambassaadorLevelAchieved(level: newLevel))
+            }
         } else {
             showAlert(for: .stampAlreadyCollected)
         }

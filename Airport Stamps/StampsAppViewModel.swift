@@ -63,8 +63,8 @@ import MapKit
     
     var collectedStamps: [Stamp] = [] {
         didSet {
-            updateCollectedStampTypeCount()
             updateStampRegionCount()
+            updateCollectedStampTypeCount()
         }
     }
     
@@ -136,12 +136,10 @@ import MapKit
     
     func verifyStampDate(stamp: Stamp) -> Bool? {
         guard let startDate = stamp.startDate, let endDate = stamp.endDate else {
-            print("NIL")
             return nil
         }
         
         if startDate <= endDate {
-            print("IF")
             let currentDate = Date()
             let oneHourBuffer = TimeInterval(60 * 60) // 1 hour in seconds
             
@@ -150,7 +148,6 @@ import MapKit
             
             return currentDate >= startDateWithBuffer && currentDate <= endDateWithBuffer
         } else {
-            print("FALSE")
             return false
         }
     }
@@ -209,22 +206,36 @@ import MapKit
     }
     var informationUpdated: Bool = false
     
-    func save(authManager: AuthManager) async {
+    func save(authManager: AuthManager) async -> Bool {
         do {
-            if let id = authManager.user?.uid {
+            if let id = await authManager.user?.uid {
                 let savedCollector = Collector(firstName: firstName, lastName: lastName, email: email, stamps: collectedStampReferences)
                 try await FirebaseService.addOrUpdateDocument(to: collectorsCollection, id: id, object: savedCollector)
                 try await attachCollectorListener(collection: collectorsCollection, documentId: id)
+                return true
+            } else {
+                return false
             }
+        }
+        catch {
+            print("Error: \(error)")
+            return false
+        }
+    }
+    
+    func signOut(authManager: AuthManager) async {
+        do {
+            reset()
+            try await authManager.signOut()
         }
         catch {
             print("Error: \(error)")
         }
     }
     
-    func signOut(authManager: AuthManager) async {
+    func deleteAccount(authManager: AuthManager) async {
         do {
-            try await authManager.signOut()
+//            try await authManager.signOut()
             reset()
         }
         catch {
@@ -234,8 +245,10 @@ import MapKit
     
     
     func reset() {
+        print("reset")
         collector = nil
         stamps.removeAll()
+        collectedStampReferences.removeAll()
         firstName = ""
         lastName = ""
         email = ""
@@ -246,7 +259,7 @@ import MapKit
     // MARK: - Utility Functions
     
     // Relies on collectedStampReferences and stamps
-    private func updateFilteredStamps() -> Bool {
+    private func updateFilteredStamps() {
         filteredStamps = stamps.filter { stamp in
             switch stampVisibility {
             case .all:
@@ -265,21 +278,17 @@ import MapKit
                 return stamp.type == .flyIn
             }
         }
-        
-        return true
     }
     
     // Relies on collectedStampReferences and stamps
-    private func updateCollectedStamps() -> Bool  {
+    private func updateCollectedStamps() {
         collectedStamps = collectedStampReferences.compactMap { reference in
             stamps.first { $0.id == reference.id }
         }
-        
-        return true
     }
     
     // Relies on stamps
-    private func updateStampTypeCount() -> Bool {
+    private func updateStampTypeCount() {
         var airportCount = 0
         var museumCount = 0
         var seminarCount = 0
@@ -301,11 +310,10 @@ import MapKit
         }
         
         stampTypeCount = (airport: airportCount, museum: museumCount, seminar: seminarCount, flyIn: flyInCount)
-        return true
     }
     
     // Relies on collectedStamps
-    private func updateCollectedStampTypeCount() -> Bool {
+    private func updateCollectedStampTypeCount() {
         var airportCount = 0
         var museumCount = 0
         var seminarCount = 0
@@ -327,11 +335,10 @@ import MapKit
         }
         
         collectedStampTypeCount = (airport: airportCount, museum: museumCount, seminar: seminarCount, flyIn: flyInCount)
-        return true
     }
     
     // Relies on collectedStamps
-    private func updateStampRegionCount() -> Bool {
+    private func updateStampRegionCount() {
         var region1Count = 0
         var region2Count = 0
         var region3Count = 0
@@ -362,7 +369,6 @@ import MapKit
         }
         
         stampRegionCount = (region1: region1Count, region2: region2Count, region3: region3Count, region4: region4Count, region5: region5Count, region6: region6Count, region7: region7Count)
-        return true
     }
     
     // Relies on rewardLevels, stampRegionCount, collectedStampTypeCount
@@ -517,12 +523,12 @@ import MapKit
     }
     
     func attachListeners(authManager: AuthManager) async {
-        guard let id = authManager.user?.uid else {
+        guard let id = await authManager.user?.uid else {
             print("User ID is nil")
             return
         }
         
-        if authManager.authState == .signedIn {
+        if await authManager.authState == .signedIn {
             if collectorListener == nil {
                 do {
                     try await attachCollectorListener(collection: collectorsCollection, documentId: id)

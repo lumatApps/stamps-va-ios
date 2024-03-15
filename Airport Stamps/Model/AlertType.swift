@@ -15,6 +15,11 @@ enum AlertType: Equatable {
     case stampAlreadyCollected
     case signInRequired
     case stampSavedSuccessfully(stampName: String)
+    case ambassaadorLevelAchieved(level: AmbassadorLevel)
+    case profileSaved
+    case profileNotSaved
+    case verificationSubmitted
+    case verificationNotSubmitted
 
     var title: String {
         switch self {
@@ -28,6 +33,16 @@ enum AlertType: Equatable {
             return "Action Required: Sign In"
         case .stampSavedSuccessfully:
             return "Stamp Collected!"
+        case .ambassaadorLevelAchieved:
+            return "Congratulations!"
+        case .profileSaved:
+            return "Profiled Saved"
+        case .profileNotSaved:
+            return "Oops! Profiled Not Saved"
+        case .verificationSubmitted:
+            return "Verification Submitted"
+        case .verificationNotSubmitted:
+            return "Verification Not Submitted"
         }
     }
     
@@ -43,10 +58,20 @@ enum AlertType: Equatable {
             return "We couldn't find a stamp at your current location. Make sure you're in the right place and try again."
         case .stampAlreadyCollected:
             return "Looks like you've already collected this stamp. Explore more to find new stamps!"
+        case .ambassaadorLevelAchieved(let level):
+            return "You've reached \(level) level!"
         case .signInRequired:
             return "You need to be signed in to collect stamps. Please sign in or create an account to continue."
         case .stampSavedSuccessfully(let stampName):
             return "Thank you for visiting \(stampName)! Your stamp has been successfully added to your collection. Check it out in your passport!"
+        case .profileSaved:
+            return "Your profile changes have been saved successfully."
+        case .profileNotSaved:
+            return "Your profile changes were unsuccessful."
+        case .verificationSubmitted:
+            return "We will review your passport and contact you."
+        case .verificationNotSubmitted:
+            return "Verification Not Submitted Placeholder"
         }
     }
 }
@@ -59,7 +84,7 @@ extension MapView {
         self.hapticFeedbackTrigger = HapticFeedbackTrigger(type: type, id: currentId)
         
         switch type {
-        case .signInRequired:
+        case .userLocationRequired:
             self.showingAuthAlert = true
         default:
             // All other types use the general alert
@@ -68,6 +93,21 @@ extension MapView {
     }
 }
 
+extension ProfileView {
+    func showAlert(for type: AlertType) {
+        self.alertTitle = type.title
+        self.alertMessage = type.message
+        let currentId = (self.hapticFeedbackTrigger?.id ?? 0) + 1
+        self.hapticFeedbackTrigger = HapticFeedbackTrigger(type: type, id: currentId)
+        
+        switch type {
+        case .profileSaved:
+            self.showingAlert = true
+        default:
+            self.showingAlert = true
+        }
+    }
+}
 
 struct HapticFeedbackTrigger: Equatable {
     let type: AlertType

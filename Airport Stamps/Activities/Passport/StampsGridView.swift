@@ -11,7 +11,7 @@ struct StampsGridView: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @Environment(StampsAppViewModel.self) var stampsAppViewModel
     @State private var isGridZoomed = false
-    @State private var selectedStamp: Stamp?
+    @State private var selectedStampReference: CollectedStamp?
     
     var columns: [GridItem] {
         switch sizeClass {
@@ -19,10 +19,14 @@ struct StampsGridView: View {
             if isGridZoomed {
                 return Array(repeating: GridItem(.flexible(minimum: 100, maximum: 200)), count: 3)
             } else {
-                return Array(repeating: GridItem(.flexible(minimum: 30, maximum: 60)), count: 9)
+                return Array(repeating: GridItem(.flexible(minimum: 30, maximum: 60)), count: 8)
             }
         default:
-            return Array(repeating: GridItem(.flexible(minimum: 30, maximum: 100)), count: 9)
+            if isGridZoomed {
+                return Array(repeating: GridItem(.flexible(minimum: 100, maximum: 200)), count: 6)
+            } else {
+                return Array(repeating: GridItem(.flexible(minimum: 50, maximum: 100)), count: 16)
+            }
         }
     }
     
@@ -31,52 +35,17 @@ struct StampsGridView: View {
         
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(stampsAppViewModel.collectedStamps) { stampReference in
+                ForEach(stampsAppViewModel.collectedStampReferences) { stampReference in
                     if let stamp = stampsAppViewModel.collectedStampsDictionary[stampReference.id] {
                         Button {
-                            // no action yet
+                            withAnimation {
+                                selectedStampReference = stampReference
+                            }
                         } label: {
                             let rotation = Double.random(in: -10..<10)
                             
-                            AsyncImage(url: URL(string: "https://storage.googleapis.com/stamps-va/stamp-images/\(stamp.id).png")) { phase in
-                                if let image = phase.image {
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .overlay(alignment: .bottom) {
-                                            if isGridZoomed {
-                                                Text(stamp.id)
-                                                    .font(.title3)
-                                                    .fontWeight(.heavy)
-                                                    .foregroundStyle(.red)
-                                                    .padding(3)
-                                                    .background(.ultraThinMaterial)
-                                                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .circular))
-                                                    .padding(.bottom, 16)
-                                            }
-                                        }
-                                } else if phase.error != nil {
-                                    Image(systemName: stamp.icon)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .foregroundStyle(.secondary)
-                                        .overlay(alignment: .bottom) {
-                                            if isGridZoomed {
-                                                Text(stamp.id)
-                                                    .font(.title3)
-                                                    .fontWeight(.heavy)
-                                                    .foregroundStyle(.red)
-                                                    .padding(3)
-                                                    .background(.ultraThinMaterial)
-                                                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .circular))
-                                                    .padding(.bottom, 16)
-                                            }
-                                        }
-                                } else {
-                                    ProgressView()
-                                }
-                            }
-                            .rotationEffect(.degrees(rotation))
+                            StampImageView(stamp: stamp, isGridZoomed: isGridZoomed)
+                                .rotationEffect(.degrees(rotation))
                         }
                         .buttonStyle(.plain)
                         .padding(isGridZoomed ? 5 : 1)
@@ -85,14 +54,54 @@ struct StampsGridView: View {
             }
             .padding()
         }
+        .overlay {
+            if let stampReference = selectedStampReference {
+                if let stamp = stampsAppViewModel.collectedStampsDictionary[stampReference.id] {
+                    Button {
+                        withAnimation {
+                            selectedStampReference = nil
+                        }
+                    } label: {
+                        VStack {
+                            StampImageView(stamp: stamp, isGridZoomed: isGridZoomed, selectedStampReference: selectedStampReference)
+                                .padding(.horizontal)
+                                .padding()
+                            
+                            Text(stamp.name)
+                                .font(.headline)
+                            
+                            if stamp.secondaryIdentifier != .unknown {
+                                Text("Region \(stamp.secondaryIdentifier.detail.region)")
+                            }
+                            
+                            Text(stampReference.dateCollected.formatted())
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(.passport)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .padding()
+                    .padding()
+                    .shadow(radius: 5)
+                    .transition(.asymmetric(
+                        insertion: .scale(scale: 0).combined(with: .opacity),
+                        removal: .scale(scale: 0).combined(with: .opacity)
+                    ))
+                }
+            }
+        }
         .scrollIndicators(.hidden)
         .background(.passport)
+        .onAppear {
+            if stampsAppViewModel.collectedStamps.count <= 12 {
+                isGridZoomed = true
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    withAnimation {
-                        isGridZoomed.toggle()
-                    }
+                    isGridZoomed.toggle()
                 } label: {
                     Image(systemName: isGridZoomed ? "minus.magnifyingglass" : "plus.magnifyingglass")
                 }
