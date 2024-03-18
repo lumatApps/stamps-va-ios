@@ -25,7 +25,6 @@ struct MapView: View {
     
     // Alert
     @State var showingAlert = false
-    @State var showingAuthAlert = false
     @State var alertTitle = ""
     @State var alertMessage = ""
     @State var hapticFeedbackTrigger: HapticFeedbackTrigger?
@@ -65,7 +64,22 @@ struct MapView: View {
                 }
             }
             .overlay(alignment: .topTrailing) {
-                MapPanelView(mapScope: mapScope, findNearbyStamp: findNearbyStamp, devMode: $devMode)
+                MapPanelView(
+                    mapScope: mapScope,
+                    findNearbyStamp: findNearbyStamp,
+                    showLocationPermissionsAlert: showLocationPermissionsAlert,
+                    devMode: $devMode
+                )
+                .alert(
+                    alertTitle,
+                    isPresented: $showingAlert
+                ) {
+                    Button("OK") {
+                        showingAlert = false
+                    }
+                } message: {
+                    Text(alertMessage)
+                }
             }
             .mapScope(mapScope)
             .mapControls {
@@ -98,20 +112,17 @@ struct MapView: View {
             }) {
                 if let stamp = selectedStamp {
                     MapSheetView(stamp: stamp, verifyStampAction: verifyStamp)
+                        .alert(
+                            alertTitle,
+                            isPresented: $showingAlert
+                        ) {
+                            Button("OK") {
+                                showingAlert = false
+                            }
+                        } message: {
+                            Text(alertMessage)
+                        }
                 }
-            }
-            // Add Stamp Alert
-            .alert(alertTitle, isPresented: $showingAlert) {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text(alertMessage)
-            }
-            // User Location Permissions Alert
-            .alert(alertTitle, isPresented: $showingAuthAlert) {
-                Button("Cancel", role: .destructive) { locationManager.requestPermission() }
-                Button("Request", role: .cancel) { }
-            } message: {
-                Text(alertMessage)
             }
             .sensoryFeedback(trigger: hapticFeedbackTrigger) { _, newTrigger in
                 switch newTrigger?.type {
@@ -123,11 +134,6 @@ struct MapView: View {
                     return .warning
                 default:
                     return nil
-                }
-            }
-            .onAppear {
-                if locationManager.authorizationStatus == .notDetermined {
-                    locationManager.requestPermission()
                 }
             }
             .toolbar {
@@ -195,15 +201,32 @@ struct MapView: View {
     @MainActor
     func findNearbyStamp() {
         if authManager.authState == .signedIn {
-            let stamp = stampsAppViewModel.findNearbyStamp(locationManager: locationManager)
-            
-            if let stamp = stamp {
-                selectedItem = stamp.id
+            if locationManager.isAuthorized {
+                let stamp = stampsAppViewModel.findNearbyStamp(locationManager: locationManager)
+                
+                if let stamp = stamp {
+                    selectedItem = stamp.id
+                } else {
+                    showAlert(for: .stampNotLocated)
+                }
             } else {
-                showAlert(for: .stampNotLocated)
+                if locationManager.authorizationStatus == .notDetermined {
+                    locationManager.requestPermission()
+                } else {
+                    showAlert(for: .userLocationRequired)
+                }
             }
         } else {
             showAlert(for: .signInRequired)
+        }
+    }
+    
+    @MainActor
+    func showLocationPermissionsAlert() {
+        if locationManager.authorizationStatus == .notDetermined {
+            locationManager.requestPermission()
+        } else {
+            showAlert(for: .userLocationRequired)
         }
     }
     

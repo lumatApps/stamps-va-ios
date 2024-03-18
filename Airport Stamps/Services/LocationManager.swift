@@ -23,10 +23,12 @@ import CoreLocation
         locationManager.delegate = self
     }
 
+    @MainActor
     func requestPermission() {
         locationManager.requestWhenInUseAuthorization()
     }
 
+    @MainActor
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
 

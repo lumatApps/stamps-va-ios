@@ -235,8 +235,20 @@ import MapKit
     
     func deleteAccount(authManager: AuthManager) async {
         do {
-//            try await authManager.signOut()
             reset()
+            try await authManager.deleteUserAccount()
+        }
+        catch AuthErrors.ReauthenticateApple {
+            // AppleID re-authentication failed
+        }
+        catch AuthErrors.RevokeAppleID {
+            // AppleID token revocation failed
+        }
+        catch AuthErrors.ReauthenticateGoogle {
+            // Google re-authentication failed
+        }
+        catch AuthErrors.RevokeGoogle {
+            // Google token revocation failed
         }
         catch {
             print("Error: \(error)")

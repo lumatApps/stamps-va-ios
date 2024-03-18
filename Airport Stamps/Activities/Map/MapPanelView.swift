@@ -9,8 +9,10 @@ import SwiftUI
 import MapKit
 
 struct MapPanelView: View {
+    @Environment(LocationManager.self) var locationManager
     var mapScope: Namespace.ID
     var findNearbyStamp: () -> Void
+    var showLocationPermissionsAlert: () -> Void
     @Binding var devMode: Bool
     
     var body: some View {
@@ -23,7 +25,14 @@ struct MapPanelView: View {
                 findNearbyStamp()
             }
             
-            MapUserLocationButton(scope: mapScope)
+            if locationManager.isAuthorized {
+                MapUserLocationButton(scope: mapScope)
+            } else {
+                MapButtonView(systemName: "location.fill.viewfinder") {
+                    showLocationPermissionsAlert()
+                }
+            }
+            
             MapCompass(scope: mapScope)
         }
         .buttonBorderShape(.roundedRectangle)

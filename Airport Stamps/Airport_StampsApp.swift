@@ -12,12 +12,13 @@ import Firebase
 struct Airport_StampsApp: App {
     // Services & Managers
     @State private var authManager: AuthManager
-    @State private var locationManager = LocationManager()
+    @State private var locationManager: LocationManager
     @State private var stampsAppViewModel: StampsAppViewModel
 
     init() {
         FirebaseApp.configure()
         authManager = AuthManager()
+        locationManager = LocationManager()
         stampsAppViewModel = StampsAppViewModel()
     }
     

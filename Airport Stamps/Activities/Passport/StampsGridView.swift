@@ -25,7 +25,7 @@ struct StampsGridView: View {
             if isGridZoomed {
                 return Array(repeating: GridItem(.flexible(minimum: 100, maximum: 200)), count: 6)
             } else {
-                return Array(repeating: GridItem(.flexible(minimum: 50, maximum: 100)), count: 16)
+                return Array(repeating: GridItem(.flexible(minimum: 50, maximum: 100)), count: 14)
             }
         }
     }
@@ -69,6 +69,7 @@ struct StampsGridView: View {
                             
                             Text(stamp.name)
                                 .font(.headline)
+                                .multilineTextAlignment(.center)
                             
                             if stamp.secondaryIdentifier != .unknown {
                                 Text("Region \(stamp.secondaryIdentifier.detail.region)")

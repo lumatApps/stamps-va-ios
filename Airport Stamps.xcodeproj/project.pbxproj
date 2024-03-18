@@ -56,11 +56,13 @@
 		A0893CCF2BA3F85500BB6A60 /* ProgressSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0893CCE2BA3F85500BB6A60 /* ProgressSectionView.swift */; };
 		A0893CD12BA3F88A00BB6A60 /* ProgramInformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0893CD02BA3F88A00BB6A60 /* ProgramInformationSection.swift */; };
 		A0893CD32BA3F9D300BB6A60 /* AuthenticationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0893CD22BA3F9D300BB6A60 /* AuthenticationSection.swift */; };
+		A0893CD52BA47B5900BB6A60 /* AuthManager-DeleteAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0893CD42BA47B5900BB6A60 /* AuthManager-DeleteAccount.swift */; };
 		A09A3CDA2B9181A1004FE834 /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CD92B9181A1004FE834 /* Stamp.swift */; };
 		A09A3CDE2B918406004FE834 /* Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDD2B918406004FE834 /* Collector.swift */; };
 		A09A3CE02B9186A0004FE834 /* CollectedStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */; };
 		A0C259E82B9AC59F002282D5 /* StampsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C259E72B9AC59F002282D5 /* StampsGridView.swift */; };
 		A0C259EC2B9B5B36002282D5 /* PastVisitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C259EB2B9B5B36002282D5 /* PastVisitsView.swift */; };
+		A0E5BB0A2BA4EC9000B46514 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A0E5BB092BA4EC9000B46514 /* PrivacyInfo.xcprivacy */; };
 		A0F98B932B9DFD840064964F /* StampsAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F98B922B9DFD840064964F /* StampsAppViewModel.swift */; };
 		A0F98B952B9E8DBF0064964F /* SignInWithEmailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F98B942B9E8DBF0064964F /* SignInWithEmailButton.swift */; };
 		A0F98B972B9E902C0064964F /* EmailSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F98B962B9E902C0064964F /* EmailSignInView.swift */; };
@@ -126,11 +128,13 @@
 		A0893CCE2BA3F85500BB6A60 /* ProgressSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSectionView.swift; sourceTree = "<group>"; };
 		A0893CD02BA3F88A00BB6A60 /* ProgramInformationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramInformationSection.swift; sourceTree = "<group>"; };
 		A0893CD22BA3F9D300BB6A60 /* AuthenticationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationSection.swift; sourceTree = "<group>"; };
+		A0893CD42BA47B5900BB6A60 /* AuthManager-DeleteAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthManager-DeleteAccount.swift"; sourceTree = "<group>"; };
 		A09A3CD92B9181A1004FE834 /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
 		A09A3CDD2B918406004FE834 /* Collector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collector.swift; sourceTree = "<group>"; };
 		A09A3CDF2B9186A0004FE834 /* CollectedStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectedStamp.swift; sourceTree = "<group>"; };
 		A0C259E72B9AC59F002282D5 /* StampsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsGridView.swift; sourceTree = "<group>"; };
 		A0C259EB2B9B5B36002282D5 /* PastVisitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastVisitsView.swift; sourceTree = "<group>"; };
+		A0E5BB092BA4EC9000B46514 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A0F98B922B9DFD840064964F /* StampsAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampsAppViewModel.swift; sourceTree = "<group>"; };
 		A0F98B942B9E8DBF0064964F /* SignInWithEmailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithEmailButton.swift; sourceTree = "<group>"; };
 		A0F98B962B9E902C0064964F /* EmailSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInView.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 				A01A9CF22B91412300B325F7 /* Airport Stamps.entitlements */,
 				A00B45212B9D6929004F824F /* GoogleService-Info.plist */,
 				A01A9CF12B913F4F00B325F7 /* Airport-Stamps-Info.plist */,
+				A0E5BB092BA4EC9000B46514 /* PrivacyInfo.xcprivacy */,
 				A00FEEB82B8F7D3200DFC61D /* Preview Content */,
 			);
 			path = "Airport Stamps";
@@ -284,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				A01A9CE62B913CF200B325F7 /* AuthManager.swift */,
+				A0893CD42BA47B5900BB6A60 /* AuthManager-DeleteAccount.swift */,
 				A01A9CED2B913E0B00B325F7 /* GoogleSignInManager.swift */,
 				A01A9CF32B91416100B325F7 /* AppleSignInManager.swift */,
 				A00FEEEA2B8F842D00DFC61D /* LocationManager.swift */,
@@ -475,6 +481,7 @@
 				A00FEEBA2B8F7D3200DFC61D /* Preview Assets.xcassets in Resources */,
 				A00B45222B9D6929004F824F /* GoogleService-Info.plist in Resources */,
 				A00B45182B9D033F004F824F /* Colors.xcassets in Resources */,
+				A0E5BB0A2BA4EC9000B46514 /* PrivacyInfo.xcprivacy in Resources */,
 				A00FEEB72B8F7D3200DFC61D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,6 +536,7 @@
 				A01A9CE32B90C45100B325F7 /* LoginView.swift in Sources */,
 				A06A86232B99E8E900E61F64 /* MKMapItem-Extension.swift in Sources */,
 				A06A862B2B9A52AE00E61F64 /* MapSheetView.swift in Sources */,
+				A0893CD52BA47B5900BB6A60 /* AuthManager-DeleteAccount.swift in Sources */,
 				A00FEF062B8FA71E00DFC61D /* MapPanelView.swift in Sources */,
 				A06E09C42B9C2FEA00343E2D /* Reward.swift in Sources */,
 				A00FEEE22B8F7E2400DFC61D /* AppConstants.swift in Sources */,
@@ -707,9 +715,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Airport-Stamps-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We would like to use your location to provide a better in app experience and to verify your airport visits.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We utilize your location data to confirm your eligibility for collecting stamps and to enhance your experience within the app.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We utilize your location data to confirm your eligibility for collecting stamps and to enhance your experience within the app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -743,9 +750,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Airport-Stamps-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We would like to use your location to provide a better in app experience and to verify your airport visits.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We utilize your location data to confirm your eligibility for collecting stamps and to enhance your experience within the app.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We utilize your location data to confirm your eligibility for collecting stamps and to enhance your experience within the app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -53,7 +53,7 @@ enum AlertType: Equatable {
         case .invalidLocation:
             return "Your current location is outside the stamp's designated area. Ensure you're near the specified map marker and verify your location settings."
         case .userLocationRequired:
-            return "We need access to your location to confirm the stamp. Please enable location services in your settings."
+            return "To collect your stamp, we require access to your location. Please navigate to your device's Settings, then head to 'Privacy & Security' > 'Location Services'. Here, ensure that Location Services are turned on, and then scroll down to find our app in the list. Tap on it and select the option to allow location access while using the app."
         case .stampNotLocated:
             return "We couldn't find a stamp at your current location. Make sure you're in the right place and try again."
         case .stampAlreadyCollected:
@@ -80,16 +80,9 @@ extension MapView {
     func showAlert(for type: AlertType) {
         self.alertTitle = type.title
         self.alertMessage = type.message
+        self.showingAlert = true
         let currentId = (self.hapticFeedbackTrigger?.id ?? 0) + 1
         self.hapticFeedbackTrigger = HapticFeedbackTrigger(type: type, id: currentId)
-        
-        switch type {
-        case .userLocationRequired:
-            self.showingAuthAlert = true
-        default:
-            // All other types use the general alert
-            self.showingAlert = true
-        }
     }
 }
 
@@ -97,15 +90,19 @@ extension ProfileView {
     func showAlert(for type: AlertType) {
         self.alertTitle = type.title
         self.alertMessage = type.message
+        self.showingAlert = true
         let currentId = (self.hapticFeedbackTrigger?.id ?? 0) + 1
         self.hapticFeedbackTrigger = HapticFeedbackTrigger(type: type, id: currentId)
-        
-        switch type {
-        case .profileSaved:
-            self.showingAlert = true
-        default:
-            self.showingAlert = true
-        }
+    }
+}
+
+extension PersonalInformationSection {
+    func showAlert(for type: AlertType) {
+        self.alertTitle = type.title
+        self.alertMessage = type.message
+        self.showingAlert = true
+        let currentId = (self.hapticFeedbackTrigger?.id ?? 0) + 1
+        self.hapticFeedbackTrigger = HapticFeedbackTrigger(type: type, id: currentId)
     }
 }
 

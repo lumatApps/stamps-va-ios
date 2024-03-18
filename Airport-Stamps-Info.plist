@@ -16,16 +16,16 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>stampsapp</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>stampsapp://lumatapps.com/signin</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>GIDClientID</key>
 	<string>909232899319-knk1o0cgbedkl3gdpc84kh4h6p3n7orf.apps.googleusercontent.com</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
